@@ -1,0 +1,15 @@
+{
+  "version": "independent",
+  "packages": ["packages/*", "servers/*", "tests"],
+  "ignoreChanges": ["**/*.spec.*", "**/*.test.*", "**/__tests__/**", "**/*.md", "**/package-lock.json", "./yarn.lock"],
+  "npmClient": "yarn",
+  "command": {
+    "version": {
+      "conventionalCommits": true,
+      "message": "chore: publish"
+    },
+    "publish": {
+      "ignorePrepublish": true
+    }
+  }
+}

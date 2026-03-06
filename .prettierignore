@@ -1,0 +1,26 @@
+## Node.js
+package-lock.json
+## dot directory
+.git/
+.idea/
+.npm/
+.docker/
+#.github/ # .github は普通に管理するマークダウンや YAML なので。
+
+# project specifics
+## dest dir
+lib/
+## view template
+views/
+## coverage
+coverage/
+## lerna
+CHANGELOG.md
+## cluster-monitor
+/servers/cluster-monitor/public/vendor/
+/servers/cluster-monitor/public/vendors/
+## zookeeper
+/packages/zookeeper
+
+## master-agent-rpc ソースコード生成用 thrift
+/packages/master-agent-rpc/ext_libs/thrift

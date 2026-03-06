@@ -1,0 +1,6 @@
+# すべてのミドルウェアは、 localhost へつなぎに行く。
+rabbitmq:
+  url:
+    - amqp://localhost
+  user: guest
+  passwd: guest

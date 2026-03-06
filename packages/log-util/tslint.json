@@ -1,0 +1,8 @@
+{
+  "extends": ["@akashic-system/tslint-config"],
+  "rules": {
+    "no-any": false,
+    "variable-name": false,
+    "max-classes-per-file": false
+  }
+}

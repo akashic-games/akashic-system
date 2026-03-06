@@ -1,0 +1,11 @@
+# if this file does NOT exists, lib/* files are ignored.
+!*.js
+!*.d.ts
+
+# Jest
+**/__tests__/
+**/__mocks__/
+*.spec.js
+*.spec.d.ts
+*.test.js
+*.test.d.ts

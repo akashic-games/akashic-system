@@ -1,0 +1,30 @@
+extends:
+  - "@commitlint/config-conventional"
+  - "@commitlint/config-lerna-scopes"
+rules:
+  header-max-length:
+    - 2
+    - always
+    - 140
+  body-max-line-length:
+    - 2
+    - always
+    - Infinity
+  subject-case:
+    - 0
+    - never
+    - lower-case
+  type-enum:
+    - 2
+    - always
+    - - build
+      - deps
+      - ci
+      - docs
+      - feat
+      - fix
+      - perf
+      - refactor
+      - style
+      - test
+      - chore

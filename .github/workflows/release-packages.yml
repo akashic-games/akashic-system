@@ -1,0 +1,60 @@
+# packages 下の特定パッケージを publish する
+name: release packages
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "packages/akashic-storage-core/package.json"
+      - "packages/amflow-message/package.json"
+      - "packages/amtplib/package.json"
+      - "packages/cast-util/package.json"
+      - "packages/content-storage-types/package.json"
+      - "packages/master-agent-rpc/package.json"
+      - "packages/playlog-client/package.json"
+      - "packages/server-engine-data-types/package.json"
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package: # publish 対象
+          - "akashic-storage-core"
+          - "amflow-message"
+          - "amtplib"
+          - "cast-util"
+          - "content-storage-types"
+          - "master-agent-rpc"
+          - "playlog-client"
+          - "server-engine-data-types"
+    steps:
+      - name: checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+
+      - name: setup nodejs
+        uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6.1.0
+        with:
+          node-version: 24
+          cache: yarn
+          registry-url: "https://registry.npmjs.org"
+
+      - name: install dependencies
+        run: yarn install --immutable --check-cache
+
+      - name: build all packages
+        run: yarn build
+
+      - name: publish package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          echo "package: ${{ matrix.package }}"
+          echo "current directory: $(pwd)"
+
+          npm publish -w packages/${{ matrix.package }}
+        continue-on-error: true

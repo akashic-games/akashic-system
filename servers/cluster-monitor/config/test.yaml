@@ -1,0 +1,13 @@
+dispatchingRedis:
+  host: redis
+# akashic system
+apiConfigs:
+  systemAPI:
+    baseUrl: http://system-api-server:3100/
+  clusterMonitorAPI:
+    baseUrl: http://cluster-monitor-api-server:16000/
+playlogServer:
+  zookeeper:
+    hosts:
+      - host: zookeeper
+        port: 2181

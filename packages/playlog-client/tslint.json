@@ -1,0 +1,12 @@
+{
+  "extends": ["@akashic-system/tslint-config"],
+  "rules": {
+    "no-shadowed-variable": false,
+    "no-any": false,
+    "variable-name": false,
+    "prefer-for-of": false,
+    "max-classes-per-file": false,
+    "no-console": false,
+    "only-arrow-functions": false
+  }
+}

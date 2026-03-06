@@ -1,0 +1,16 @@
+.navbar-brand {
+  padding: 0px;
+}
+.navbar-brand > img {
+  height: 100%;
+  padding: 15px;
+  width: auto;
+}
+.capacity-area {
+  border-radius: 10px;
+  background-color: #fafcf5;
+}
+/* `a {pointer-events: none;}` だとhover 時の 🚫 マークも出なくなってしまうので。 */
+.pagination > .disabled > a:active {
+  pointer-events: none;
+}

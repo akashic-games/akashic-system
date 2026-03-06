@@ -1,0 +1,10 @@
+node_modules
+.DS_Store*
+npm-debug.log
+debug.log
+*.iml
+*.tgz
+coverage
+junitresults.xml
+lib
+.idea

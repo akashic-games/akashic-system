@@ -1,0 +1,5 @@
+dbSettings:
+  database:
+    hosts:
+      - host: database
+        port: 3306

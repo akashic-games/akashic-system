@@ -1,0 +1,30 @@
+# Node.js
+coverage/
+node_modules/
+## lib/ は npmignore の都合で、各ディレクトリで .gitignore している
+#lib/
+
+# Vagrant
+.vagrant/
+
+# Logs
+logs/*/*
+!logs/*/.gitkeep
+*.log
+npm-debug.log*
+report.*.json
+
+# local configuration
+*local.yml
+*local.yaml
+*local.json
+
+# Yarn v2+
+.pnp.*
+.yarn/*
+.npm/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

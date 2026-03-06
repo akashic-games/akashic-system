@@ -1,0 +1,14 @@
+{
+  "mysql": {
+    "driver": "mysql",
+    "host": "localhost",
+    "database": "akashic_dev",
+    "user": "akashic",
+    "password": "pw"
+  },
+  "mongodb": {
+    "driver": "mongodb",
+    "database": "akashic_test",
+    "host": "localhost"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "extends": ["@akashic-system/tslint-config"],
+  "rules": {
+    "no-any": false,
+    "no-console": false,
+    "variable-name": false,
+    "no-empty": false
+  }
+}

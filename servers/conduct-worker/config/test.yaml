@@ -1,0 +1,15 @@
+# middleware
+dbSettings:
+  database:
+    hosts:
+      - host: database
+        port: 3306
+    database: akashic_dev
+rabbitmq:
+  url:
+    - amqp://rabbitmq
+# akashic system
+playServer:
+  url: http://system-api-server:8080
+masterServer:
+  url: http://system-api-server:8080

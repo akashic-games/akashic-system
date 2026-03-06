@@ -1,0 +1,15 @@
+dbSettings:
+  database:
+    hosts:
+      - host: database
+        port: 3306
+    database: akashic_dev
+redis:
+  host: redis
+rabbitmq:
+  url:
+    - amqp://rabbitmq
+zookeeper:
+  hosts:
+    - host: zookeeper
+      port: 2181

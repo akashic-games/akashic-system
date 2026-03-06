@@ -1,0 +1,18 @@
+@startuml
+() Publisher1
+() Publisher2
+() Publisher3
+() Subscriber1
+() Subscriber2
+package RabbitMQ {
+  Publisher1 -> [Exchange]: key=100.32 (playId.eventType)
+  Publisher2 -> [Exchange]: key=100.33
+  Publisher3 -> [Exchange]: key=101.32
+  rectangle {
+    [Exchange] -> [Queue1]: key=100.*
+    [Exchange] -> [Queue2]: key=101.*
+    [Queue1] -> Subscriber1
+    [Queue2] -> Subscriber2
+  }
+}
+@enduml

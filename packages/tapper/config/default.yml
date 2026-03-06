@@ -1,0 +1,5 @@
+database:
+  hosts:
+    - localhost
+  user: akashic
+  password: pw

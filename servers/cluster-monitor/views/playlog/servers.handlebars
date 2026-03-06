@@ -1,0 +1,72 @@
+<script src="/js2/admin.js"></script>
+<script src="/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/js2/table.js"></script>
+<div id="page-wrapper">
+    <div>
+        {{#if host}}
+            <h2>Show Playlog Server : {{host}}</h2>
+            <h4>{{host}} の割り当て操作</h4>
+            <form class="form-inline" method="POST">
+                <div class="btn-toolbar" role="toolbar">
+                <input type="hidden" name="host" value="{{host}}">
+                <input type="submit" class="btn btn-info" name="all_normal" value="全て割当開始">
+                <input type="submit" class="btn btn-danger" name="all_standby" value="全て割当停止">
+                </div>
+            </form>
+        {{else}}
+            <h2>Show Playlog Servers</h2>
+        {{/if}}
+        <p>Total Count: {{totalCount}}</p>
+        {{#if playlogServerOverviews}}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>種類（Trait）</th>
+                        <th>Sessions/Max Client</th>
+                        <th>End Point</th>
+                        <th>Reservation End Point</th>
+                        <th>クライアント割当</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {{#each playlogServerOverviews}}
+                    <tr>
+                        <td>
+                            <a href="#">{{id}} </a>
+                        </td>
+                        <td>{{trait}}</td>
+                        <td>{{numSessions}} / {{numMaxClients}}</td>
+                        <td>{{endpoint}}</td>
+                        <td>{{reservationEndpoint}}</td>
+                        <td>
+                            {{#if isStandby}}
+                                <p><a href="#" onclick="remove_exclude_playlog_onclick('{{trait}}', '{{id}}')" class="btn btn-info">割当開始</a></p>
+                            {{else}}
+                                <p><a href="#" onclick="add_exclude_playlog_onclick('{{trait}}', '{{id}}')" class="btn btn-danger">割当停止</a></p>
+                            {{/if}}
+                        </td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        {{/if}}
+        <!-- 明らかに常にfalseなのでコメントアウト
+        {{#if pages}}
+            <nav>
+                <ul class="pagination">
+                    {{#each pages}}
+                        {{#if current}}
+                            <li class="page-item active">
+                                <a class="page-link" href="?page={{page}}">{{page}}<span class="sr-only">(current)</span></a>
+                            </li>
+                        {{else}}
+                            <li class="page-item"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
+                        {{/if}}
+                    {{/each}}
+                </ul>
+            </nav>
+        {{/if}}
+        -->
+    </div>
+</div>

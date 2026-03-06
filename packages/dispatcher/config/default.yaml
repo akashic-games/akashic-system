@@ -1,0 +1,10 @@
+zookeeper:
+  hosts:
+    - host: localhost
+      port: 2181
+      path: ""
+redis:
+  host: localhost
+  port: 6379
+  option:
+    password: ""

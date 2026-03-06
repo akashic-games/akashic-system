@@ -1,0 +1,112 @@
+<script src="/js2/admin.js"></script>
+<div id="page-wrapper">
+  <div class="content-header">
+    <h3>Process <a href="/instances?process={{process.processName}}">{{process.processName}}</a> Information</h3>
+  </div>
+  {{#if true}}
+    <h3>Admin Controller</h3>
+    {{#if process.isNormal}}
+      <p><a href="#" onclick="standby_process_onclick('{{process.processName}}')" class="btn btn-danger">割当解除</a></p>
+    {{else}}
+      <p><a href="#" onclick="start_process_onclick('{{process.processName}}')" class="btn btn-info">割当開始</a></p>
+    {{/if}}
+  {{/if}}
+  <table class="table table-striped table-bordered">
+    <tbody>
+      <tr>
+        <td class="col-xs-2">type</td>
+        <td class="col-md-10">{{process.type}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">host</td>
+        <td class="col-md-10">{{process.host}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">port</td>
+        <td class="col-md-10">{{process.port}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">czxid</td>
+        <td class="col-md-10">{{process.czxid}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">capacity</td>
+        <td class="col-md-10">{{process.capacity}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">video enabled</td>
+        <td class="col-md-10">{{process.videoEnabled}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">mode</td>
+        <td class="col-md-10">{{process.mode}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">trait</td>
+        <td class="col-md-10">{{process.trait}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <h4>status</h4>
+  <table class="table table-striped table-bordered">
+    <tbody>
+      <tr>
+        <td class="col-xs-2">uptime</td>
+        <td class="col-md-10">{{process.status.upTime}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">number of instances</td>
+        <td class="col-md-10">{{process.status.numInstances}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">capacity used</td>
+        <td class="col-md-10">{{process.status.used}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">number of video instances</td>
+        <td class="col-md-10">{{process.status.numVideoInstances}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">total cpu time</td>
+        <td class="col-md-10">{{process.status.totalCpuTime}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">cpu utilization</td>
+        <td class="col-md-10">{{process.status.cpuUtilization}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5>drawing thread</h5>
+  <table class="table table-striped table-bordered">
+    <tbody>
+      <tr>
+        <td class="col-xs-2">total cpu time</td>
+        <td class="col-md-10">{{process.status.drawingThread.totalCpuTime}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">cpu utilization</td>
+        <td class="col-md-10">{{process.status.drawingThread.cpuUtilization}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">number of surfaces</td>
+        <td class="col-md-10">{{process.status.drawingThread.numSurfaces}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">number of surface pixels</td>
+        <td class="col-md-10">{{process.status.drawingThread.numSurfacePixels}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">number of images</td>
+        <td class="col-md-10">{{process.status.drawingThread.numImages}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">number of image pixels</td>
+        <td class="col-md-10">{{process.status.drawingThread.numImagePixels}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <h4>json</h4>
+  <textarea rows={{jsonRows}} disabled style="width:100%;height:100%;resize:none">
+{{json}}
+  </textarea>
+</div>

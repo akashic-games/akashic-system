@@ -1,0 +1,36 @@
+rabbitmq:
+  urls:
+    - amqp://rabbitmq
+  user: guest
+  password: guest
+mongodb:
+  url: mongodb://mongodb
+  database: akashic
+s3:
+  endpoint: http://minio
+  accessKeyId: guest
+  secretAccessKey: guest
+mysql:
+  host: database
+  port: 3306
+  supportBigNumbers: true
+  bigNumberStrings: true
+  charset: utf8mb4
+  stringifyObjects: true
+archiveSettings:
+  bucket: playlog-store
+log:
+  appenders:
+    out:
+      type: console
+      layout:
+        type: basic
+  categories:
+    default:
+      appenders:
+        - out
+      level: info
+    out:
+      appenders:
+        - out
+      level: info

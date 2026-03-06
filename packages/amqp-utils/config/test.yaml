@@ -1,0 +1,6 @@
+# Drone.io で実行される CI 環境から使用される。
+# すべてのミドルウェアは、別の service として動かされる。
+# @see .drone.yml
+rabbitmq:
+  url:
+    - amqp://rabbitmq

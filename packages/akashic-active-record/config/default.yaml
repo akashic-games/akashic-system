@@ -1,0 +1,10 @@
+dbSettings:
+  database:
+    hosts:
+      - host: localhost
+        port: 3306
+    database: akashic_dev
+    user: akashic
+    password: pw
+    pool: true
+    poolConnectionLimit: 40

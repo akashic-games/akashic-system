@@ -1,0 +1,6 @@
+{
+  "extends": ["@akashic-system/tslint-config"],
+  "rules": {
+    "interface-name": [true, "always-prefix"]
+  }
+}

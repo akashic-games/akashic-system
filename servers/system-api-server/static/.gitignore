@@ -1,0 +1,3 @@
+# healthcheck ファイルは、インフラの監視のために使用される
+healthcheck
+healthcheck_status

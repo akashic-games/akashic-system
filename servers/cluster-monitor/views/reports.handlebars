@@ -1,0 +1,48 @@
+<div id="page-wrapper">
+  <div>
+    <h2>Show Reports</h2>
+    {{#if reports}}
+      <table class="table table-striped">
+        <tbody>
+          {{#each reports}}
+            <tr>
+              <td><a href="/reports/{{_id}}">{{_source.ts}}</a></td>
+              <td><a href="/reports/{{_id}}">InstanceID:{{_source.instanceId}}</a></td>
+              <td><a href="/reports/{{_id}}">{{trim _source.message 80}}</a></td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{/if}}
+    {{#if pages}}
+      <nav>
+        <ul class="pagination">
+          {{#if isFirstPage}}
+            <li class="page-item disabled"><a class="page-link" href="#">&lt;&lt;</a></li>
+          {{else}}
+            <li class="page-item"><a class="page-link" href="{{@root.base}}page={{previousPage}}">&lt;&lt;</a></li>
+          {{/if}}
+          {{#each pages}}
+            {{#if current}}
+              <li class="page-item active">
+                <a class="page-link" href="{{@root.base}}page={{page}}">{{page}}<span class="sr-only">(current)</span></a>
+              </li>
+            {{else}}
+              <li class="page-item"><a class="page-link" href="{{@root.base}}page={{page}}">{{page}}</a></li>
+            {{/if}}
+          {{/each}}
+          {{#if isLastPage}}
+            <li class="page-item disabled"><a class="page-link" href="#">&gt;&gt;</a></li>
+          {{else}}
+            <li class="page-item"><a class="page-link" href="{{@root.base}}page={{nextPage}}">&gt;&gt;</a></li>
+          {{/if}}
+        </ul>
+      </nav>
+    {{/if}}
+    {{#if totalCount}}
+      <p>Total Count: {{totalCount}}</p>
+    {{else}}
+      <p>not found</p>
+    {{/if}}
+  </div>
+</div>

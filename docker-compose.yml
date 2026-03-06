@@ -1,0 +1,211 @@
+version: "3"
+services:
+  # akashic system
+  akashic-cluster-master:
+    container_name: akashic-cluster-master
+    image: ghcr.io/akashic-games/akashic-system:latest
+    working_dir: /home/akashic/app/servers/akashic-cluster-master
+    restart: always
+    ports:
+      - "13400:13400"
+    environment:
+      NODE_ENV: test
+      LANG: ja_JP.UTF8
+    depends_on:
+      - database
+      - rabbitmq
+      - zookeeper
+  cluster-monitor:
+    container_name: cluster-monitor
+    image: ghcr.io/akashic-games/akashic-system:latest
+    working_dir: /home/akashic/app/servers/cluster-monitor
+    restart: always
+    ports:
+      - "17000:17000"
+    environment:
+      NODE_ENV: test
+      LANG: ja_JP.UTF8
+    depends_on:
+      - redis
+      - zookeeper
+      - cluster-monitor-api-server
+      - system-api-server
+  cluster-monitor-api-server:
+    container_name: cluster-monitor-api-server
+    image: ghcr.io/akashic-games/akashic-system:latest
+    working_dir: /home/akashic/app/servers/cluster-monitor-api-server
+    restart: always
+    ports:
+      - "16000:16000"
+    environment:
+      NODE_ENV: test
+      LANG: ja_JP.UTF8
+    depends_on:
+      - database
+      - redis
+      - zookeeper
+  conduct-worker:
+    container_name: conduct-worker
+    image: ghcr.io/akashic-games/akashic-system:latest
+    working_dir: /home/akashic/app/servers/conduct-worker
+    restart: always
+    environment:
+      NODE_ENV: test
+      LANG: ja_JP.UTF8
+    depends_on:
+      - database
+      - rabbitmq
+      - system-api-server
+  playlog-server:
+    container_name: playlog-server
+    image: ghcr.io/akashic-games/akashic-system:latest
+    working_dir: /home/akashic/app/servers/playlog-server
+    restart: always
+    ports:
+      - "4001:4001"
+      - "4301:4301"
+    environment:
+      NODE_ENV: test
+      LANG: ja_JP.UTF8
+    volumes:
+      - /var/tmp:/var/log/akashic
+    depends_on:
+      - database
+      - mongodb
+      - minio
+      - rabbitmq
+      - redis
+      - zookeeper
+      - system-api-server
+    command:
+      - start
+      - "--"
+      - "-d"
+      - "-p"
+      - "4001"
+      - "--reservationPort"
+      - "4301"
+      - "-m"
+      - "50"
+      - "-i"
+      - "akashic-system_playlog-server-01"
+      - "-t"
+      - "standard_websocket"
+      - "-e"
+      - "ws://playlog-server:4001"
+      - "-s"
+      - "http://playlog-server:4301"
+      - "-c"
+      - "dispatching_playlog-server_4001"
+      - "-r"
+      - "60000"
+  system-api-server:
+    container_name: system-api-server
+    image: ghcr.io/akashic-games/akashic-system:latest
+    working_dir: /home/akashic/app/servers/system-api-server
+    restart: always
+    ports:
+      - "3100:3100"
+    environment:
+      NODE_ENV: test
+      LANG: ja_JP.UTF8
+    depends_on:
+      - database
+      - mongodb
+      - rabbitmq
+      - redis
+      - zookeeper
+
+  # game-runner2
+  game-runner:
+    container_name: game-runner
+    image: ghcr.io/akashic-games/game-runner:latest
+    volumes:
+      - ./config/game-runner/test.json:/home/akashic/game-runner/config.json:ro
+      - ./volumes/akashic-resources:/data/gsk/:ro
+    depends_on:
+      - mongodb
+      - minio
+      - rabbitmq
+      - zookeeper
+
+  # middle wares
+  database:
+    container_name: database
+    image: mysql:8.0.39
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root-pw
+      MYSQL_DATABASE: akashic_dev
+      MYSQL_USER: akashic
+      MYSQL_PASSWORD: pw
+    command: --default-authentication-plugin=mysql_native_password
+  redis:
+    container_name: redis
+    image: redis:7.4.7
+    restart: always
+    ports:
+      - "6379:6379"
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.13.7-management
+    restart: always
+    ports:
+      - "5671:5671"
+      - "5672:5672"
+      - "15672:15672"
+      - "25672:25672"
+  ferretdb-postgres:
+    container_name: ferretdb-postgres
+    image: ghcr.io/ferretdb/postgres-documentdb:17-0.107.0-ferretdb-2.7.0
+    restart: always
+    environment:
+      - POSTGRES_USER=username
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres
+    volumes:
+      - ferretdb-postgres-volume:/var/lib/postgresql/data
+    # コンテナの起動チェック
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}"]
+      interval: 5s
+      retries: 3
+  mongodb:
+    container_name: mongodb
+    image: ghcr.io/ferretdb/ferretdb:2.7.0
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      - FERRETDB_AUTH=false
+      - FERRETDB_POSTGRESQL_URL=postgres://username:password@ferretdb-postgres:5432/postgres
+    depends_on:
+      ferretdb-postgres:
+        condition: service_healthy
+  zookeeper:
+    container_name: zookeeper
+    image: zookeeper:3.5.10
+    restart: always
+    ports:
+      - "2181:2181"
+  minio:
+    container_name: minio
+    image: minio/minio:RELEASE.2024-08-03T04-33-23Z
+    restart: always
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: hogehoge
+      MINIO_ROOT_PASSWORD: hogehoge
+    volumes:
+      - /data
+    command:
+      - server
+      - /data
+      - --console-address
+      - ":9001"
+volumes:
+  ferretdb-postgres-volume:

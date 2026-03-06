@@ -1,0 +1,97 @@
+# すべてのミドルウェアは、 localhost へつなぎに行く。
+# 全部入り環境では、特に設定せずにすべての Unit/Feature テストが通るようにする。
+dbSettings:
+  database:
+    hosts: # 歴史的経緯によって、複数設定できるようになっている。2つ以上設定したらエラーになる。
+      - host: localhost
+        port: 3306
+    database: akashic_dev
+    user: akashic
+    password: pw
+    pool: true # 歴史的経緯で存在する設定値。この設定値は無視され、常に connection pool が使用される。
+    poolConnectionLimit: 40
+redis:
+  host: localhost
+  port: 6379
+  option:
+    password: ""
+contentStorage:
+  redis:
+    host: localhost
+    port: 6379
+    option:
+      password: ""
+rabbitmq:
+  url:
+    - amqp://localhost
+  user: guest
+  passwd: guest
+mongodb:
+  url: mongodb://username:password@localhost/akashic_dev
+zookeeper:
+  hosts:
+    - host: localhost
+      port: 2181
+log:
+  appenders:
+    out:
+      type: console
+  categories:
+    default:
+      appenders:
+        - out
+      level: info
+
+# client 側の設定（Legacy）
+appConfig:
+  # 不明
+  process:
+    acceptPort: 6001
+    timeout:
+      default: 3000
+      assignGame: 30000
+  # 不明
+  master:
+    maxGameAssignTime: 86400000
+  #
+  systemAPI:
+    baseUrl: http://localhsot:3100/
+  #
+  clusterMonitorAPI:
+    baseUrl: http://localhost:16000/
+# client 側の設定
+endpoints:
+  cluster-master: "http://localhost:13400"
+  cluster-monitor: "http://localhost:17000"
+  cluster-monitor-api-server: "http://localhost:16000"
+  playlog-server: "ws://localhost:4001"
+  playlog-server-back: "http://localhost:4301"
+  system-api-server: "http://localhost:3100"
+
+# playlog-server
+datastore:
+  backend: mongodb
+  mongodb:
+    url: mongodb://username:password@localhost
+    database: akashic_dev
+playServer:
+  url: http://localhost:3100
+storageServer:
+  url: http://localhost:3100
+s3:
+  endpoint: http://localhost:9000
+  accessKeyId: hogehoge
+  secretAccessKey: hogehoge
+archiveSettings:
+  bucket: playlog-store-test
+# playlog-store-workerとplaylog-serverのmysql設定
+mysql:
+  host: localhost
+  port: 3306
+  database: akashic_dev
+  user: akashic
+  password: pw
+  supportBigNumbers: true
+  bigNumberStrings: true
+  charset: utf8mb4
+  stringifyObjects: true

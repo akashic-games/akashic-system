@@ -1,0 +1,10 @@
+{
+  "transform": {
+    "^.+\\.(ts|tsx)$": "ts-jest"
+  },
+  "roots": ["<rootDir>/src"],
+  "collectCoverage": true,
+  "collectCoverageFrom": ["<rootDir>/src/**/*.{ts,tsx}"],
+  "coveragePathIgnorePatterns": ["<rootDir>/src/server.ts", "<rootDir>/src/cli.ts"],
+  "testEnvironment": "node"
+}

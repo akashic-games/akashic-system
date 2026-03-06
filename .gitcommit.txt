@@ -1,0 +1,32 @@
+type(scope): subject
+
+BREAKING CHANGE: body
+
+# ## type
+# - feat: 新機能の追加（Semantic Versioning で MINOR リリースになる変更）
+# - fix: バグの修正（Semantic Versioning で PATCH リリースになる変更）
+# - chore: その他、コアコードを変更しない、雑多なもの
+# // 以下のものは、使いたい人が使えば良い
+# - build: ビルドシステム自体の更新や設定の変更（tsconfig.json の変更など）
+# - deps: 外部モジュールの依存関係の更新（package-lock.json や yarn.lock の更新など）
+# - ci: CI の設定やスクリプトの変更（Drone.io や Circle CI の設定やスクリプトなど）
+# - docs: docs ディレクトリや ソースコードの Document Block コメント の更新
+# - perf: パフォーマンスを向上させるための変更（Semantic Versioning で PATCH リリースになる変更のことが多い）
+# - refactor: バグの修正も機能追加もしていない変更（できるだけ『新装版 リファクタリング』にある手法名を書く）
+# - style: コードの AST を変更しないもの（`npm run fmt` など）
+# - test: 不足しているテストの追加や既存のテストの修正（テストコードのみの変更にすること）（機能追加のときは feat にテスト追加も含めて良い）
+#
+# ## scope
+# - パッケージ名を書く（例：playlog-client）
+# - 特定の一つのパッケージでない場合は書かない
+#
+# ## subject
+# - 日本語で書く
+# - 過去形の動詞で文を閉じる（例：README を更新した）
+# - 句点を入れない
+#
+# ## body
+# - 日本語で書く
+# - このコミットの理由や動機を書く
+# - 破壊的変更（Semantic Versioning で MAJOR リリースになる変更）がある場合は、`BREAKING CHANGE:` の1行を始めに入れる
+#   - `BREAKING CHANGE:` の最後のコロンは必須

@@ -1,0 +1,9 @@
+{
+  "extends": ["@akashic-system/tslint-config"],
+  "rules": {
+    "prefer-for-of": false,
+    "max-classes-per-file": false,
+    "no-any": false,
+    "no-empty-interface": false
+  }
+}

@@ -1,0 +1,8 @@
+service:
+  baseUrl: http://localhost:3100/
+dispatchingSystemAPIServer:
+  baseUrl: http://localhost:3150/
+dispatcher:
+  baseUrl: http://localhost:4500/
+retry: 3
+maxTimeout: 60000

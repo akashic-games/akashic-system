@@ -1,0 +1,23 @@
+@startuml
+() Publisher1
+() Publisher2
+() Subscriber1
+() Subscriber2
+rectangle {
+  () HBaseClient1
+  () HBaseClient2
+}
+package RabbitMQ {
+  Publisher1 -> [Exchange]: key=100.0 (playId.opcode)
+  Publisher2 -> [Exchange]: key=101.0
+  rectangle {
+    [Exchange] -> [Queue1]: key=100.*
+    [Exchange] -> [Queue2]: key=101.*
+    [Queue1] -> Subscriber1
+    [Queue2] -> Subscriber2
+  }
+  [Exchange] -> [Queue For HBase]: key=*.*
+  [Queue For HBase] -> HBaseClient1: round-robin
+  [Queue For HBase] -> HBaseClient2
+}
+@enduml

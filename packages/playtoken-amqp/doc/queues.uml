@@ -1,0 +1,21 @@
+@startuml
+() PermissionServer
+() PlaylogServer1
+() PlaylogServer2
+() PlaylogServer3
+package RabbitMQ {
+  PermissionServer -> [Exchange]: key=100.1 (playId.eventType)
+  PermissionServer -> [Exchange]: key=101.1 (playId.eventType)
+  rectangle {
+    [Exchange] -> [Queue1]: key=100.*
+    [Exchange] -> [Queue2]: key=100.*
+    [Exchange] -> [Queue3]: key=101.*
+    [Queue1] -> PlaylogServer1
+    [Queue2] -> PlaylogServer2
+    [Queue3] -> PlaylogServer3
+    [Queue1] <- PlaylogServer1: ack
+    [Queue2] <- PlaylogServer2: ack
+    [Queue3] <- PlaylogServer3: ack
+  }
+}
+@enduml

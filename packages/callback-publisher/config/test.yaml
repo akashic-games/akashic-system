@@ -1,0 +1,4 @@
+# すべてのミドルウェアは、別の service として動かされる。
+rabbitmq:
+  url:
+    - amqp://rabbitmq

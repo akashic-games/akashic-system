@@ -1,0 +1,6 @@
+service:
+  baseUrl: http://gamep-dev01:3100/
+dispatchingSystemAPIServer:
+  baseUrl: http://gamep-dev01:3150/
+dispatcher:
+  baseUrl: http://gamep-dev01:4500/

@@ -1,0 +1,12 @@
+dbSettings:
+  database:
+    hosts:
+      - host: database
+        port: 3306
+    database: akashic_dev
+dispatchingRedis:
+  host: redis
+zookeeper:
+  hosts:
+    - host: zookeeper
+      port: 2181

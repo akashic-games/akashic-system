@@ -1,0 +1,11 @@
+# リポジトリルートにある、例えば tests/ や .jest.json などは、大した容量ではないし、ignore で列挙・管理しない。
+# docker build で不要なファイルの中でも特に時間を長引かせる要因を ignore する。
+# また、セキュリティ的にまずいよねーみたいなものも ignore する。
+
+# Node.js
+**/node_modules/
+# Akashic System directory structure
+## artifacts
+### 例えば servers/system-api-server/lib ディレクトリがイメージ内に作られないことになるけれど、
+### tsc がディレクトリの作成も勝手にやってくれるっぽいので、手抜きでこうなってる。
+**/lib/

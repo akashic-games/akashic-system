@@ -1,0 +1,3 @@
+# if this file does NOT exists, lib/* files are ignored.
+!*.js
+!*.d.ts

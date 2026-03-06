@@ -1,0 +1,25 @@
+{
+  "name": "@akashic-system/tslint-config",
+  "version": "2.0.30",
+  "main": "tslint.json",
+  "scripts": {
+    "preinstall": "node --version",
+    "start": "node --version",
+    "test": "node --version",
+    "lint": "node --version",
+    "fmt": "node --version",
+    "format": "node --version",
+    "build": "node --version",
+    "clean": "node --version"
+  },
+  "author": "DWANGO Co., Ltd.",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "29.5.14",
+    "lerna": "8.2.4",
+    "tslint-config-prettier": "1.18.0"
+  },
+  "publishConfig": {
+    "@akashic-system:registry": "https://registry.npmjs.org/"
+  }
+}

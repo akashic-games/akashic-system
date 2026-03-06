@@ -1,0 +1,6 @@
+{
+  "extends": "@akashic-system/tsc-config",
+  "compilerOptions": {
+    "noEmit": true
+  }
+}

@@ -1,0 +1,39 @@
+# middleware
+tokenValidator:
+  type: redis
+  redis:
+    repository:
+      host: redis
+    secret: the_very_secure_secret_key
+  database:
+    hosts:
+      - host: database
+        port: 3306
+    database: akashic_dev
+  permissionServer:
+    url: http://system-api-server:3100
+rabbitmq:
+  url:
+    - amqp://rabbitmq
+datastore:
+  backend: mongodb
+  mongodb:
+    url: mongodb://username:password@mongodb
+    database: akashic_test
+dispatchingRedis:
+  host: redis
+mysql:
+  host: database
+  database: akashic_dev
+  port: 3306
+s3:
+  endpoint: http://minio
+archiveSettings:
+  bucket: playlog-store-test
+# akashic system
+playServer:
+  url: http://system-api-server:3100
+storageServer:
+  url: http://system-api-server:3100
+endpoints:
+  system-api-server: http://system-api-server:3100/

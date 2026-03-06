@@ -1,0 +1,103 @@
+<script src="/js2/admin.js"></script>
+<script src="/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/js2/table.js"></script>
+<div id="page-wrapper">
+  <div>
+    {{#if host}}
+      <h2>Show {{host}} Processes</h2>
+      <h4>{{host}} の割り当て操作</h4>
+      <form class="form-inline" method="POST">
+        <div class="btn-toolbar" role="toolbar">
+          <input type="hidden" name="host" value="{{host}}">
+          <input type="submit" class="btn btn-info" name="all_normal" value="全て割当開始">
+          <input type="submit" class="btn btn-danger" name="all_standby" value="全て割当解除">
+        </div>
+      </form>
+    {{else}}
+      <h2>Show Processes</h2>
+    {{/if}}
+    <hr />
+    {{#if processes}}
+      <form class="form-inline pull-right" method="GET">
+        <div class="form-group">
+          {{#if host}}
+          <input type="hidden" name="host" value="{{host}}">
+          {{/if}}
+          <label class="control-label">表示件数</label>
+          <select name="pageSize" class="form-control input-sm">
+            <option value="10" {{#selectedPageSize 10}}{{/selectedPageSize}}>10</option>
+            <option value="25" {{#selectedPageSize 25}}{{/selectedPageSize}}>25</option>
+            <option value="50" {{#selectedPageSize 50}}{{/selectedPageSize}}>50</option>
+            <option value="100" {{#selectedPageSize 100}}{{/selectedPageSize}}>100</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-default btn-sm">更新</button>
+      </form>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>プロセス名</th>
+            <th>割当</th>
+            <th>キャパシティ</th>
+            <th>ビデオ出力</th>
+            <th>トレイト</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+        {{#each processes}}
+          <tr>
+            <td><a href="/processes/{{this.processName}}">{{this.processName}}</a></td>
+          {{#if this.isNormal}}
+            <td>割当中</td>
+          {{else}}
+            <td>待機中</td>
+          {{/if}}
+            <td>{{this.status.used}} / {{this.capacity}}</td>
+          {{#if this.videoEnabled}}
+            <td>可能</td>
+          {{else}}
+            <td>不可</td>
+          {{/if}}
+            <td>{{this.formattedTrait}}</td>
+          {{#if this.isNormal}}
+            <td><button type="button" onclick="standby_process_onclick('{{this.processName}}')" class="btn btn-danger">割当解除</button></td>
+          {{else}}
+            <td><button type="button" onclick="start_process_onclick('{{this.processName}}')" class="btn btn-info">割当開始</button></td>
+          {{/if}}
+          </tr>
+        {{/each}}
+        </tbody>
+      </table>
+    {{else}}
+      <p>not found</p>
+    {{/if}}
+    {{#if pages}}
+      {{host}}
+      <nav>
+        <ul class="pagination">
+          {{#if isFirstPage}}
+            <li class="page-item disabled"><a class="page-link" href="#">&lt;&lt;</a></li>
+          {{else}}
+            <li class="page-item"><a class="page-link" href="?page={{previousPage}}&host={{@root.host}}&pageSize={{pageSize}}">&lt;&lt;</a></li>
+          {{/if}}
+          {{#each pages}}
+            {{#if current}}
+              <li class="page-item active">
+                <a class="page-link" href="?page={{page}}&host={{@root.host}}&pageSize={{@root.pageSize}}">{{page}}<span class="sr-only">(current)</span></a>
+              </li>
+            {{else}}
+              <li class="page-item"><a class="page-link" href="?page={{page}}&host={{@root.host}}&pageSize={{@root.pageSize}}">{{page}}</a></li>
+            {{/if}}
+          {{/each}}
+          {{#if isLastPage}}
+            <li class="page-item disabled"><a class="page-link" href="#">&gt;&gt;</a></li>
+          {{else}}
+            <li class="page-item"><a class="page-link" href="?page={{nextPage}}&host={{@root.host}}&pageSize={{pageSize}}">&gt;&gt;</a></li>
+          {{/if}}
+        </ul>
+      </nav>
+    {{/if}}
+    <p>Total Count: {{totalCount}}</p>
+  </div>
+</div>

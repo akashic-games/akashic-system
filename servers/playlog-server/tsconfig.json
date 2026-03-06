@@ -1,0 +1,13 @@
+{
+  "extends": "@akashic-system/tsc-config",
+  "include": ["typings/*.d.ts", "src/index.ts", "src/cli.ts", "src/server.ts"],
+  "compilerOptions": {
+    "outDir": "lib",
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitThis": false,
+    "baseUrl": "types"
+  }
+}

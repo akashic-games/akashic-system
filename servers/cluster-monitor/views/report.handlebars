@@ -1,0 +1,111 @@
+<script src="/js2/admin.js"></script>
+<div id="page-wrapper">
+  <div class="content-header">
+    <h3>Crash Report #{{report._id}} Information</h3>
+  </div>
+  <table class="table table-striped table-bordered">
+    <tbody>
+      <tr>
+        <td class="col-xs-2">log type</td>
+        <td class="col-md-10">{{report._source.log_type}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">ts u</td>
+        <td class="col-md-10">{{report._source.ts_u}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">file</td>
+        <td class="col-md-10">{{report._source.file}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">instance id</td>
+        <td class="col-md-10"><a href="/instances/{{report._source.instanceId}}">#{{report._source.instanceId}}</a></td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">timestamp</td>
+        <td class="col-md-10">{{report._source.ts}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">level</td>
+        <td class="col-md-10">{{report._source.level}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">logger</td>
+        <td class="col-md-10">{{report._source.logger}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">report type</td>
+        <td class="col-md-10">{{report._source.report_type}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">tag</td>
+        <td class="col-md-10">{{report._source.tag}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">message</td>
+        <td class="col-md-10"><pre>{{report._source.message}}</pre></td>
+      </tr>
+    </tbody>
+  </table>
+  {{#if instance.modules}}
+    <h4>modules</h4>
+    {{#each instance.modules}}
+      <h5>{{code}}</h5>
+      <table class="table table-striped table-bordered">
+        <tbody>
+          {{#if values.playId}}
+            <tr>
+              <td class="col-xs-2">play id</td>
+              <td class="col-md-10"><a href="/instances?play={{values.playId}}">{{values.playId}}</a></td>
+            </tr>
+          {{/if}}
+          {{#if values.executionMode}}
+            <tr>
+              <td class="col-xs-2">mode</td>
+              <td class="col-md-10">{{values.executionMode}}</td>
+            </tr>
+          {{/if}}
+          {{#if values.handlers}}
+            <thead>
+              <tr>
+                <td class="col-xs-2">type</td>
+                <td class="col-xs-2">end point</td>
+                <td class="col-md-8">protocol</td>
+              </tr>
+            </thead>
+            {{#each values.handlers}}
+              <tr>
+                <td class="col-xs-2">{{type}}</td>
+                <td class="col-xs-2">{{endpoint}}</td>
+                <td class="col-md-8">{{protocol}}</td>
+              </tr>
+            {{/each}}
+          {{/if}}
+          {{#if values.gameConfigurations}}
+            <tr>
+            {{#each values.gameConfigurations}}
+              <td>{{this}}</td>
+            {{/each}}
+            </tr>
+          {{/if}}
+          {{#if values.videoPublishUri}}
+            <tr>
+              <td class="col-xs-2">video publish uri</td>
+              <td class="col-md-10">{{values.videoPublishUri}}</td>
+            </tr>
+          {{/if}}
+          {{#if values.videoFrameRate}}
+            <tr>
+              <td class="col-xs-2">video frame rate</td>
+              <td class="col-md-10">{{values.videoFrameRate}}</td>
+            </tr>
+          {{/if}}
+        </tbody>
+      </table>
+    {{/each}}
+  {{/if}}
+  <h4>json</h4>
+  <textarea rows={{jsonRows}} disabled style="width:100%;height:100%;resize:none">
+{{json}}
+  </textarea>
+</div>

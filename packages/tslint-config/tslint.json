@@ -1,0 +1,12 @@
+{
+  "extends": ["tslint:recommended", "tslint-config-prettier"],
+  "rules": {
+    "cyclomatic-complexity": true,
+    "no-any": true,
+    "no-bitwise": false,
+    "no-parameter-properties": true,
+    "no-switch-case-fall-through": true,
+    "object-literal-sort-keys": false,
+    "interface-name": [true, "never-prefix"]
+  }
+}

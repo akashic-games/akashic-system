@@ -1,0 +1,14 @@
+{
+  "extends": ["@akashic-system/tslint-config"],
+  "rules": {
+    "no-empty": false,
+    "no-any": false,
+    "no-shadowed-variable": false,
+    "no-console": false,
+    "variable-name": false,
+    "only-arrow-functions": false,
+    "radix": false,
+    "no-empty-interface": false,
+    "unified-signatures": false
+  }
+}

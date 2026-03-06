@@ -1,0 +1,29 @@
+# Drone.io で実行される CI 環境から使用される。
+# すべてのミドルウェアは、別の service として動かされる。
+# @see .drone.yml
+dbSettings:
+  database:
+    hosts:
+      - host: database
+        port: 3306
+redis:
+  host: redis
+rabbitmq:
+  url:
+    - amqp://rabbitmq
+mongodb:
+  url: mongodb://username:password@mongodb/akashic_test
+s3:
+  endpoint: http://minio:9000
+  accessKeyId: hogehoge
+  secretAccessKey: hogehoge
+mysql:
+  host: localhost
+  port: 3306
+  database: akashic_dev
+  user: akashic
+  password: pw
+  supportBigNumbers: true
+  bigNumberStrings: true
+  charset: utf8mb4
+  stringifyObjects: true

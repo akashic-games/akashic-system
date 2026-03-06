@@ -1,0 +1,4 @@
+{
+  "projects": ["<rootDir>/tests"],
+  "workerIdleMemoryLimit": "3GiB"
+}

@@ -1,0 +1,59 @@
+{
+  "name": "@akashic/master-agent-rpc",
+  "version": "7.1.0",
+  "description": "masterとagentのRPC用パッケージ",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "npm run compile",
+    "pretest": "npm run lint && npm run compile:spec",
+    "test": "npm run lint && jest",
+    "lint": "tslint --project tsconfig.json",
+    "precompile": "npm run clean:lib",
+    "compile": "tsc",
+    "precompile:spec": "npm run clean:tmp",
+    "compile:spec": "tsc -p tsconfig.spec.json",
+    "clean:lib": "shx rm -rf lib/*",
+    "clean:tmp": "shx rm -rf tmp/*",
+    "format": "tslint -p tsconfig.json --fix"
+  },
+  "publishConfig": {
+    "access": "public",
+    "@akashic:registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "lib",
+    "thrift"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akashic-games/akashic-system.git",
+    "directory": "packages/master-agent-rpc"
+  },
+  "author": "DWANGO Co., Ltd.",
+  "license": "MIT",
+  "devDependencies": {
+    "@akashic-system/jest-config": "^2.0.53",
+    "@types/jest": "29.5.14",
+    "@types/node": "8.10.8",
+    "@types/rx-lite": "4.0.5",
+    "@types/thrift": "0.10.7",
+    "jest": "^29.7.0",
+    "shx": "~0.2.2",
+    "source-map-support": "~0.5.4",
+    "ts-jest": "29.4.6",
+    "tslint": "~5.9.1",
+    "typescript": "~5.5.4"
+  },
+  "dependencies": {
+    "@akashic/server-engine-data-types": "~6.0.100",
+    "rx-lite": "~4.0.7",
+    "thrift": "~0.11.0"
+  },
+  "jest": {
+    "preset": "@akashic-system/jest-config",
+    "setupFilesAfterEnv": [
+      "../../packages/jest-config/jest.setup.js"
+    ]
+  }
+}

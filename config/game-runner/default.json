@@ -1,0 +1,37 @@
+{
+  "cluster": {
+    "enable:int": 1,
+    "zk_servers:string": "zookeeper:2181",
+    "machine_values": {
+      "capacity:int": 1
+    }
+  },
+  "runner": {
+    "base_dir:string": "/data",
+    "engine_dir:string": "engines"
+  },
+  "amqp": {
+    "enable:int": 1,
+    "uris:string": "amqp://guest:guest@rabbitmq"
+  },
+  "mongodb": {
+    "enable:int": 1,
+    "uri:string": "mongodb://mongodb/akashic"
+  },
+  "content_storage": {
+    "redis": {
+      "enable:int": 1,
+      "uri:string": "tcp://redis-content-storage-node-0:6401"
+    }
+  },
+  "opengl": {
+    "enable_opengl:int": 0
+  },
+  "publisher": {
+    "type:string": "ffmpeg",
+    "ffmpeg": {
+      "executable:string": "",
+      "args:string": ""
+    }
+  }
+}

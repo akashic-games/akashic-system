@@ -1,0 +1,33 @@
+# EditorConfig はエディタの共通な設定を簡略化するために使っているだけなので、Lint などには使用しない。
+root = true
+
+[*]
+# charset
+charset = utf-8
+# line break
+end_of_line = lf
+# indent
+indent_style = space
+indent_size = 2
+# End Of XXX
+trim_trailing_whitespace = true
+insert_final_newline = true
+# Block Comment
+block_comment_start = /*
+block_comment = *
+block_comment_end = */
+
+[*.md]
+trim_trailing_whitespace = false
+
+# Windows
+[*.bat]
+indent_style = tab
+end_of_line = CRLF
+
+## prettier で Lint されるので、無視するもの
+# TypeScript
+[{*.ts,*.ats,*.tsx}]
+indent_style = tab
+tab_width = 2
+indent_size = 2

@@ -1,0 +1,102 @@
+server:
+  port: 3100
+  portOffset: 0
+  unixDomainSocket: ""
+  pidFile: ""
+  bodySizeLimit: 1gb
+  numberOfWorkers: 1
+# middleware
+dbSettings:
+  database:
+    hosts:
+      - host: database
+        port: 3306
+    database: akashic
+    user: akashic
+    password: pw
+    pool: true
+    poolConnectionLimit: 40
+redis:
+  host: redis
+  port: 6379
+  option:
+    password: ""
+contentStorage:
+  redis:
+    host: redis-content-storage-node-0
+    port: 6401
+    option:
+      password: ""
+dispatching:
+  type: dynamic
+  static:
+    playlogServerUrl: http://playlog-server
+  dynamic:
+    server:
+      monitorCacheExpireMsec: 5000
+      shuffleProcessCount: 5
+    playlogServer:
+      trait: standard_websocket
+      apiProtocol: http
+    redis:
+      host: redis
+      port: 6379
+      option:
+        password: ""
+rabbitmq:
+  url:
+    - amqp://rabbitmq
+  user: guest
+  passwd: guest
+datastore:
+  backend: mongodb
+  mongodb:
+    url: mongodb://mongodb/akashic
+apiConfigs:
+  elasticsearch:
+    baseUrl: http://elastic-search:9200/
+    index: akashic-*
+    type: fluentd
+    searchQuery: filter_path=hits.total,hits.hits._id,hits.hits._source
+s3:
+  endpoint: http://minio
+  accessKeyId: guest
+  secretAccessKey: guest
+archiveSettings:
+  bucket: playlog-store
+# akashic system
+security:
+  permissionSecret: "the_very_secure_secret_key"
+slackNotifier:
+  url: YOUR_SLACK_WEBHOOK_URL.local
+logger:
+  appenders:
+    access:
+      type: console
+      layout:
+        type: basic
+    out:
+      type: console
+      layout:
+        type: basic
+    error:
+      type: console
+      layout:
+        type: basic
+  categories:
+    default:
+      appenders:
+        - out
+      level: info
+    access:
+      appenders:
+        - access
+      level: info
+    out:
+      appenders:
+        - out
+      level: info
+    error:
+      appenders:
+        - error
+      level: info

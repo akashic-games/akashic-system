@@ -1,0 +1,29 @@
+{
+  "extends": [
+    "config:js-app",
+    ":disableDependencyDashboard",
+    ":maintainLockFilesDisabled",
+    ":automergeMinor",
+    ":rebaseStalePrs",
+    ":respectLatest",
+    ":prConcurrentLimitNone",
+    ":prHourlyLimitNone",
+    ":disableMajorUpdates",
+    ":pinSkipCi",
+    "preview:dockerVersions",
+    "preview:dockerCompose",
+    "group:recommended",
+    "helpers:disableTypesNodeMajor",
+    "workarounds:all"
+  ],
+  "baseBranches": ["main"],
+  "ignoreDeps": ["jest", "@types/jest", "zookeeper", "@types/express-serve-static-core"],
+  "recreateWhen": "always",
+  "minimumReleaseAge": "7 days",
+  "packageRules": [
+    {
+      "matchFileNames": ["packages/master-agent-rpc/**", "docker-compose-all-in-one.yml", ".github/workflows/**"],
+      "enabled": false
+    }
+  ]
+}

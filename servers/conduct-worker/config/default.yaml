@@ -1,0 +1,53 @@
+# middleware
+dbSettings:
+  database:
+    hosts:
+      - host: database
+        port: 3306
+    database: akashic
+    user: akashic
+    password: pw
+    pool: true
+    poolConnectionLimit: 3
+rabbitmq:
+  url:
+    - amqp://rabbitmq
+  user: guest
+  passwd: guest
+# akashic system
+playServer:
+  url: http://system-api-server:3100
+masterServer:
+  url: http://system-api-server:3180
+# application config
+log:
+  appenders:
+    access:
+      type: console
+      layout:
+        type: basic
+    out:
+      type: console
+      layout:
+        type: basic
+    error:
+      type: console
+      layout:
+        type: basic
+  categories:
+    default:
+      appenders:
+        - out
+      level: info
+    access:
+      appenders:
+        - access
+      level: info
+    out:
+      appenders:
+        - out
+      level: info
+    error:
+      appenders:
+        - error
+      level: info

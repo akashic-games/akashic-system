@@ -1,0 +1,37 @@
+# すべてのミドルウェアは、 localhost へつなぎに行く。
+# 全部入り環境では、特に設定せずにすべての Unit/Feature テストが通るようにする。
+dbSettings:
+  database:
+    hosts: # 歴史的経緯によって、複数設定できるようになっている。2つ以上設定したらエラーになる。
+      - host: localhost
+        port: 3306
+    database: akashic_dev
+    user: akashic
+    password: pw
+    pool: true # 歴史的経緯で存在する設定値。この設定値は無視され、常に connection pool が使用される。
+    poolConnectionLimit: 40
+redis:
+  host: localhost
+  port: 6379
+  option:
+    password: ""
+rabbitmq:
+  url:
+    - amqp://localhost
+  user: guest
+  passwd: guest
+mongodb:
+  url: mongodb://username:password@localhost/akashic_dev
+log:
+  appenders:
+    out:
+      type: console
+  categories:
+    default:
+      appenders:
+        - out
+      level: info
+s3:
+  endpoint: http://localhost:9000
+  accessKeyId: hogehoge
+  secretAccessKey: hogehoge

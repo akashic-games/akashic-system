@@ -1,0 +1,36 @@
+{
+  "name": "tests",
+  "private": true,
+  "version": "0.0.58",
+  "description": "akashic system large tests",
+  "main": "index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "test": "jest --ci --forceExit"
+  },
+  "preset": "@akashic-system/jest-config",
+  "devDependencies": {
+    "@akashic-system/jest-config": "^2.0.53",
+    "@akashic-system/tsc-config": "^2.0.31",
+    "@akashic/playlog-client": "7.3.1",
+    "@akashic/rest-client-core": "^5.0.4",
+    "@akashic/system-api-client": "^6.0.106",
+    "@types/config": "3.3.5",
+    "@types/jest": "29.5.14",
+    "@types/node": "^12.12.21",
+    "config": "^3.2.4",
+    "jest": "29.7.0",
+    "js-yaml": "^3.13.1",
+    "ts-jest": "29.2.5",
+    "typescript": "^5.5.4"
+  },
+  "jest": {
+    "preset": "@akashic-system/jest-config",
+    "setupFilesAfterEnv": [
+      "../packages/jest-config/jest.setup.js"
+    ]
+  },
+  "publishConfig": {
+    "@akashic:registry": "https://registry.npmjs.org/"
+  }
+}

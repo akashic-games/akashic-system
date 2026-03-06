@@ -1,0 +1,7 @@
+zookeeper:
+  hosts:
+    - host: zookeeper
+      port: 2181
+redis:
+  host: redis
+  port: 6379

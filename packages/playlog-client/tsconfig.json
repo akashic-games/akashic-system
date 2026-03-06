@@ -1,0 +1,10 @@
+{
+  "extends": "@akashic-system/tsc-config",
+  "include": ["src/index.ts", "src/cli.ts", "src/server.ts"],
+  "compilerOptions": {
+    "target": "es5",
+    "outDir": "lib",
+    "lib": ["es2020", "dom"],
+    "strictNullChecks": false
+  }
+}

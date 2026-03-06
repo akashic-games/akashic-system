@@ -1,0 +1,39 @@
+# @see akashic-system--npm-test-all.sh
+dbSettings:
+  database:
+    hosts:
+      - host: localhost
+        port: 3306
+    database: akashic_dev
+redis:
+  host: localhost
+  port: 6379
+contentStorage:
+  redis:
+    host: localhost
+rabbitmq:
+  url:
+    - amqp://localhost
+mongodb:
+  url: mongodb://username:password@localhost/akashic_dev
+zookeeper:
+  hosts:
+    - host: localhost
+      port: 2181
+
+# playlog-server
+datastore:
+  backend: mongodb
+  mongodb:
+    url: mongodb://username:password@localhost
+s3:
+  endpoint: http://localhost:9000
+  accessKeyId: hogehoge
+  secretAccessKey: hogehoge
+archiveSettings:
+  bucket: playlog-store-test
+# playlog-store-workerとplaylog-serverのmysql設定
+mysql:
+  host: localhost
+  port: 3306
+  database: akashic_dev

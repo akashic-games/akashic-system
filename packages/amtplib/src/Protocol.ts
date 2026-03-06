@@ -1,0 +1,2 @@
+export const PROTOCOL_IDENTIFIER = 0x414d5450;
+export const PROTOCOL_VERSION = 1;

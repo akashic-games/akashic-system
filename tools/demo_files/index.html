@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Akashic System demo</title>
+  </head>
+  <body>
+    <h1>Akashic System demo</h1>
+    <div id="user_id"></div>
+    <div id="container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/@akashic/agvw@1.0.7/dist/index.min.js"></script>
+    <script>
+      const agv = window.require("@akashic/akashic-gameview-web");
+
+      const query = new URLSearchParams(location.search);
+      if (query.has("play_id")) {
+        document.getElementById("user_id").innerText = `user_id: ${query.get("user_id")}`;
+        document.title = `Akashic System demo (${query.get("user_id")})`;
+
+        const gameview = new agv.AkashicGameView({
+          container: document.getElementById("container"),
+          width: 720,
+          height: 540,
+        });
+
+        const gameContent = new agv.GameContent({
+          contentUrl: query.get("content_url"),
+          player: { id: query.get("user_id") },
+          playConfig: {
+            playId: query.get("play_id"),
+            executionMode: agv.ExecutionMode.Passive,
+            playlogServerUrl: query.get("playlog_server_url"),
+            playToken: query.get("token"),
+          },
+        });
+
+        gameContent.addErrorListener({
+          onError: function (e) {
+            console.error(e);
+          },
+        });
+
+        gameview.addContent(gameContent);
+      }
+    </script>
+  </body>
+</html>

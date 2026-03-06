@@ -1,0 +1,19 @@
+<div id="page-wrapper">
+  <div>
+    <div class="content-header">
+      <h2>Search {{target}}</h2>
+      <form action="{{action}}" method="POST">
+        {{#each querys}}
+        <p>
+          {{title}} :<br>
+          <input type="text" name="{{name}}" size="40">          
+        </p>
+        {{/each}}
+        <p>
+          <input type="submit" value="検索">
+          <input type="reset" value="リセット">
+        </p>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<script src="/js2/admin.js"></script>
+<div id="page-wrapper">
+  {{#if admin}}
+    <h3>Admin Controller</h3>
+    <p>
+      <a href="#" onclick="play_stop_onclick({{play.id}})" class="btn btn-danger">Stop</a>
+      <a href="#" onclick="play_start_onclick({{play.id}})" class="btn btn-primary">Start</a>
+      <a href="#" onclick="play_playlog_onclick({{play.id}})" class="btn btn-info">Playlog</a>
+    </p>
+  {{/if}}
+  <div class="content-header">
+    <h3>Play <a href="/instances?play={{play.id}}">#{{play.id}}</a> Information</h3>
+  </div>
+  <table class="table table-striped table-bordered">
+    <tbody>
+      <tr>
+        <td class="col-xs-2">game code</td>
+        <td class="col-md-10">{{play.gameCode}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">started</td>
+        <td class="col-md-10">{{rawDate play.started}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">status</td>
+        <td class="col-md-10">{{play.status}}</td>
+      </tr>
+      <tr>
+        <td class="col-xs-2">parent id</td>
+        {{#if play.parentId}}
+          <td class="col-md-10"><a href="{{play.parentId}}">{{play.parentId}}</a></td>
+        {{else}}
+          <td class="col-md-10">null</td>
+        {{/if}}
+      </tr>
+      <tr>
+        <td class="col-xs-2">finished</td>
+        {{#if play.finished}}
+          <td class="col-md-10">{{play.finished}}</td>
+        {{else}}
+          <td class="col-md-10">null</td>
+        {{/if}}
+      </tr>
+    </tbody>
+  </table>
+  <h4>json</h4>
+  <textarea rows={{jsonRows}} disabled style="width:100%;height:100%;resize:none">
+{{json}}
+  </textarea>
+</div>

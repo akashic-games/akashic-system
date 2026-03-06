@@ -1,0 +1,45 @@
+<div id="page-wrapper">
+  <div>
+    <h2>Show Playlog Server Hosts</h2>
+    {{#if hosts}}
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ホスト名</th>
+            <th>割当中プロセス数</th>
+            <th>待機中プロセス数</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each hosts}}
+          <tr>
+            <td><a href="/playlog/servers?host={{host}}">{{host}}</a></td>
+            <td>{{normalCount}}</td>
+            <td>{{standbyCount}}</td>
+            <td>
+              <form class="form-inline" method="POST">
+                <div class="btn-toolbar" role="toolbar">
+                  <input type="hidden" name="host" value="{{host}}">
+                  <input type="submit" class="btn btn-info" name="all_normal" value="全て割当開始">
+                  <input type="submit" class="btn btn-danger" name="all_standby" value="全て割当解除">
+                </div>
+              </form>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>全{{totalCounts.host}}件</td>
+            <td>全{{totalCounts.normalProcess}}プロセス</td>
+            <td>全{{totalCounts.standbyProcess}}プロセス</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    {{else}}
+      <p>not found</p>
+    {{/if}}
+  </div>
+</div>

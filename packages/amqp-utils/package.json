@@ -1,0 +1,57 @@
+{
+  "name": "@akashic/amqp-utils",
+  "version": "2.1.22",
+  "description": "rabbitmq cluster の接続管理や publish/consume 操作を補助するライブラリ",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "prepare": "run-s build",
+    "start": "node --version",
+    "pretest": "run-s lint",
+    "test": "jest",
+    "lint": "run-p lint:*",
+    "lint:tslint": "tslint -p tsconfig.test.json",
+    "lint:tsc": "tsc -p tsconfig.test.json",
+    "fmt": "run-s format",
+    "format": "tslint -p tsconfig.test.json --fix",
+    "prebuild": "run-s clean",
+    "build": "tsc",
+    "clean": "run-p clean:*",
+    "clean:lib": "shx rm -rf lib/*"
+  },
+  "files": [
+    "lib"
+  ],
+  "author": "DWANGO Co., Ltd.",
+  "license": "MIT",
+  "dependencies": {
+    "amqplib": "0.10.9"
+  },
+  "devDependencies": {
+    "@akashic-system/jest-config": "^2.0.53",
+    "@akashic-system/tsc-config": "^2.0.31",
+    "@akashic-system/tslint-config": "^2.0.30",
+    "@types/amqplib": "0.10.8",
+    "@types/config": "3.3.5",
+    "@types/jest": "29.5.14",
+    "@types/node": "22.19.7",
+    "config": "3.3.12",
+    "jest": "29.7.0",
+    "js-yaml": "4.1.1",
+    "npm-run-all2": "6.2.6",
+    "shx": "0.4.0",
+    "ts-jest": "29.4.6",
+    "tslint": "6.1.3",
+    "tslint-config-prettier": "1.18.0",
+    "typescript": "5.9.3"
+  },
+  "jest": {
+    "preset": "@akashic-system/jest-config",
+    "setupFilesAfterEnv": [
+      "../../packages/jest-config/jest.setup.js"
+    ]
+  },
+  "publishConfig": {
+    "@akashic:registry": "https://registry.npmjs.org/"
+  }
+}

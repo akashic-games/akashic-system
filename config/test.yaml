@@ -1,0 +1,41 @@
+# Drone.io で実行される CI 環境から使用される。
+# すべてのミドルウェアは、別の service として動かされる。
+# @see .drone.yml
+dbSettings:
+  database:
+    hosts:
+      - host: database
+        port: 3306
+    database: akashic_dev
+redis:
+  host: redis
+  port: 6379
+contentStorage:
+  redis:
+    host: redis
+rabbitmq:
+  url:
+    - amqp://rabbitmq
+mongodb:
+  url: mongodb://username:password@mongodb/akashic_dev
+zookeeper:
+  hosts:
+    - host: zookeeper
+      port: 2181
+
+# playlog-server
+datastore:
+  backend: mongodb
+  mongodb:
+    url: mongodb://username:password@mongodb
+s3:
+  endpoint: http://minio:9000
+  accessKeyId: hogehoge
+  secretAccessKey: hogehoge
+archiveSettings:
+  bucket: playlog-store-test
+# playlog-store-workerとplaylog-serverのmysql設定
+mysql:
+  host: database
+  port: 3306
+  database: akashic_dev

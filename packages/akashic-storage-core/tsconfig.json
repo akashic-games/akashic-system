@@ -1,0 +1,10 @@
+{
+  "extends": "@akashic-system/tsc-config",
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "commonjs",
+    "outDir": "lib",
+    "strictNullChecks": false
+  },
+  "include": ["src/index.ts", "src/cli.ts", "src/server.ts"]
+}

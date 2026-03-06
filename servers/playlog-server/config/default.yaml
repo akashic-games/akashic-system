@@ -1,0 +1,101 @@
+server:
+  port: 4100
+# middleware
+tokenValidator:
+  type: redis
+  redis:
+    repository:
+      host: redis
+      port: 6379
+      option:
+        password: ""
+    secret: the_very_secure_secret_key
+  database:
+    hosts:
+      - host: database
+        port: 3306
+    database: akashic
+    user: akashic
+    password: pw
+    pool: true
+    poolConnectionLimit: 40
+  permissionServer:
+    url: http://system-api-server:3100
+rabbitmq:
+  url:
+    - amqp://rabbitmq
+  user: guest
+  passwd: guest
+  prefetchCount: 25
+  prefetchInterval: 16
+datastore:
+  backend: mongodb
+  mongodb:
+    url: mongodb://mongodb
+    database: akashic
+dispatchingRedis:
+  host: redis
+  port: 6379
+  option:
+    password: ""
+mysql:
+  host: database
+  port: 3306
+  database: akashic
+  user: akashic
+  password: pw
+  supportBigNumbers: true
+  bigNumberStrings: true
+  charset: utf8mb4
+  stringifyObjects: true
+s3:
+  endpoint: http://minio
+  accessKeyId: guest
+  secretAccessKey: guest
+archiveSettings:
+  bucket: playlog-store
+# akashic system
+playServer:
+  url: http://system-api-server:3100
+storageServer:
+  url: http://system-api-server:3100
+# application config
+eventLimitCount:
+  mainPlayer: 300
+  subPlayer: 300
+disableClustering: false
+log:
+  appenders:
+    access:
+      type: console
+      layout:
+        type: basic
+    out:
+      type: console
+      layout:
+        type: basic
+    error:
+      type: console
+      layout:
+        type: basic
+  categories:
+    default:
+      appenders:
+        - out
+        - access
+        - error
+      level: info
+    out:
+      appenders:
+        - out
+      level: info
+    access:
+      appenders:
+        - access
+      level: info
+    error:
+      appenders:
+        - error
+      level: error
+endpoints:
+  system-api-server: http://system-api-server:3100/

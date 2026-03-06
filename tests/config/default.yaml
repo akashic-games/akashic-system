@@ -1,0 +1,16 @@
+endpoints:
+  cluster-master: "http://localhost:13400"
+  cluster-monitor: "http://localhost:17000"
+  cluster-monitor-api-server: "http://localhost:16000"
+  playlog-server: "ws://localhost:4001"
+  playlog-server-back: "http://localhost:4301"
+  system-api-server: "http://localhost:3100"
+database:
+  hosts:
+    - host: database
+      port: 3306
+  database: akashic_dev
+  user: akashic
+  password: pw
+  pool: true
+  poolConnectionLimit: 40

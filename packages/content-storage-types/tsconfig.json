@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["es5"],
+    "strict": true,
+    "declaration": true,
+    "outDir": "lib/",
+    "sourceMap": false,
+    "types": []
+  },
+  "files": ["src/index.ts"]
+}

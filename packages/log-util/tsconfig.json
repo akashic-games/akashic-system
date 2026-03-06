@@ -1,0 +1,7 @@
+{
+  "extends": "@akashic-system/tsc-config",
+  "include": ["src/index.ts", "src/cli.ts", "src/server.ts"],
+  "compilerOptions": {
+    "outDir": "lib"
+  }
+}

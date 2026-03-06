@@ -1,0 +1,38 @@
+# middleware
+dbSettings:
+  database:
+    hosts:
+      - host: database
+        port: 3306
+    database: akashic_dev
+redis:
+  host: redis
+contentStorage:
+  redis:
+    host: redis
+dispatching:
+  type: dynamic
+  static:
+    playlogServerUrl: http://playlog-server
+  dynamic:
+    redis:
+      host: redis
+rabbitmq:
+  url:
+    - amqp://rabbitmq
+datastore:
+  mongodb:
+    url: mongodb://username:password@mongodb/akashic_test
+apiConfigs:
+  elasticsearch:
+    baseUrl: http://elastic-search:9200/
+s3:
+  endpoint: http://minio
+archiveSettings:
+  bucket: playlog-store-test
+# akashic system
+security:
+  permissionSecret: the_very_secure_secret_key
+
+slackNotifier:
+  url: YOUR_SLACK_WEBHOOK_URL.local

@@ -1,133 +1,51 @@
-## Play の状態とその Playlog のアーカイブライフサイクル
+# Play と Playlog について
 
-```mermaid
----
-title: playlog lifecycle
----
-stateDiagram-v2
-  [*] --> Building: Play が作成された
-  Building --> Closed: Close Play
-  Closed --> Archived
-  Archived --> Treated
-  Treated --> Deployed
-```
+Play はあるゲームの実行空間を表すリソースです。
+Akashic System は、Play ごとのゲームフレーム情報である [Playlog tickList/Start points](https://github.com/akashic-games/playlog) を、ドキュメントデータベースの Playlog Store に永続化しています。
 
-## 各状態の説明
+Playlog tickList/Start points は、リプレイ要求や、途中からゲームに参加するときに読み出され、ゲームの状態を再現することができます。
 
-- Playlog はどこに保存されているか
-- Playlog Client はどこから Playlog を取得するか
+Playlog を保存する Playlog Store は、MongoDB driver を経由して操作できるドキュメントデータベースをバックエンドとして実装されています。
+Playlog tick （= ゲームフレーム）というデータ転送・計算負荷が高い情報を扱うため、シンプルな Key & Value 構成としています。
 
-使用できる [Playlog Store](https://github.com/akashic-games/akashic-system/tree/development/packages/playlog-store/src) と操作:
+- 実現例：MongoDB driver 互換の FerretDB
+- 使用例：Play に紐づく Instance が出力した Playlog 情報の保存と参照
 
-| state    | StoreClient | put | update | get | scan |
-| -------- | ----------- | --- | ------ | --- | ---- |
-| Building | FerretDB    | ◯   | ◯      | ◯   | ◯    |
-| Closed   | FerretDB    | ×   | ×      | ◯   | ◯    |
-| Archived | ?           | ×   | ×      | ?   | ?    |
-| Treated  | S3          | ×   | ×      | ?   | ?    |
-| Deployed | S3 / HTTP   | ×   | ×      | ◯   | ?    |
+## 構成
 
-PlaylogStore は保存をすることがそのインターフェースの主体であるから、 Archived 以降の状態の Playlog に対応するものは、Store ではないのでは…？と考えるかもしれません。
-たしかに Akashic の思想上ではたしかに Close された以降の Playlog は変更不可能ですが、実装としては「やれなくはない」ので PlaylogStore です。
-現実問題として実装するかどうかは、また別の問題です。
+ドキュメントデータベース上に以下のコレクション、インデックスを作成します。
 
-### Building
+| コレクション    | インデックス名   | フィールド          | ユニーク | 用途                           |
+| --------------- | ---------------- | ------------------- | -------- | ------------------------------ |
+| playlogs        | idx_playId_frame | (playId, frame)     | ✓        | フレーム単位の検索・重複防止   |
+| startpoints     | idx_playId_frame | (playId, frame)     | ✓        | スナップショット検索・重複防止 |
+| startpoints     | idx_timestamp    | (playId, timestamp) | -        | 時系列検索                     |
+| playlogMetadata | idx_playId       | (playId)            | ✓        | メタデータ検索・楽観ロック     |
 
-Play が作られてから Close されるまでの状態です。
-まだ Active AE が存在し、Playlog に書き込み可能です。
+いずれもアプリケーションの Play リソースの識別子である [playId](/docs/system-api-doc/reference/specification_parameters.md#play) をキーとします。
 
-この状態では、まだ FerretDB 上にデータが存在しており、Get も Subscribe もできます。
+### playlogs
 
-### Closed
+- playId をキーとする
+- frame に対応するエンコード済み Tick データを持つ
+- [AMFlow#getTickList](https://github.com/akashic-games/amflow#getticklist) など、ある playId に紐づく全ての frame データを得るために使われます。
 
-Play は Close され、変更されなくなった状態です。
+### startpoints
 
-FerretDB 上に存在し、そこから取得できます。
+- playId をキーとする
+- 開始地点情報の記録
+- [AMFlow#getStartPoint](https://github.com/akashic-games/amflow#getstartpoint) など、指定した frame や timestamp 以前の最も近い開始位置を得るために使われます。
 
-### Archived
+### playlogMetadata
 
-S3 へアーカイブされた状態です。
-Play 単位での取得が可能かは未定義です。
+- playId をキーとする
+- playlog のメタ情報を管理
 
-FerretDB から取得できるかは未定義です。
+## ライフサイクル
 
-この状態では、複数の Playlog をまとめてひとつの BSON ファイルにした状態で S3 バケットの `/playlogs` や `/startpoints` に保存されています。
+Play の状態は [System API reference の プレー状態仕様](/docs/system-api-doc/reference/specification_play_status.md) で定義されています。
 
-この状態では、PlayID を指定した取得ができません。
-データベースを参照するなどして、参照したい Playlog が含まれているファイルを特定し、その BSON ファイルから抽出する必要があります。
+Playlog は Play の状態と同期します。ある Play が終端状態となった後は、原則として Playlog が変更されることはありません。
 
-現在は、日次で PlayID １万件ごとに BSON としてダンプし、３日に１回の頻度で S3 にアップロードしています。
-
-### Treated: 未実装
-
-Archive された Play を PlayID ごとのファイルに分割したり、メタデータを作成したりした状態です。
-
-S3から取得できます。
-
-この状態では、PlayID ごとに１つのファイルでアーカイブされています。
-S3 バケットの `/split_by_id` 以下に PlayID のディレクトリがあり、その下に使用目的に応じた `playlog.bson` `playlog.json` `startpoint.json` `meta.json` などが保存されています。
-
-- playlog.json: Akashic Engine や Playlog Server が playlog をそのままデータとして使用する。
-- startpoint.json: Akashic Engine や Playlog Server が startpoint をそのままデータとして使用する。
-- meta.json: フレーム数など、RDB には保存されていない Playlog 自体のメタデータ。
-- playlog.bson: そのまま FerretDB にインポートする。
-- startpoint.bson: そのまま FerretDB にインポートする。
-- playlog.metadata.json: FerretDB にインポートする際に使用する、mongodump 時に生成されるファイル。
-
-#### playlog.json example
-
-```json
-[
-  {
-    "playId": "95324293",
-    "frame": "0",
-    "data": ""
-  },
-  {
-    "playId": "95324293",
-    "frame": "1",
-    "data": ""
-  },
-  {
-    "playId": "95324293",
-    "frame": "2",
-    "data": ""
-  }
-]
-```
-
-#### startpoint.json example
-
-```json
-{
-  "playId": "95324291",
-  "frame": "0",
-  "startPoint": ""
-}
-```
-
-#### meta.json example
-
-運用してて必要になった情報をいれてます。
-ここに含める情報の基準は「Closed になるまで確定せず、Playlog をすべてロードしないとわからない」です。
-
-closedAt ではなく endAt なのは、Playlog の終端がこの時間なのであって、Close された時間ではないからです。
-
-```json
-{
-  "playlog": {
-    "frameCount": 129512,
-    "endAt": "2024-09-30T23:59:00.0000Z"
-  }
-}
-```
-
-### Deployed: 未実装
-
-インターネット上に公開されており、だれでも PlayID を指定して取得できる状態です。
-
-// todo: 実際にアクセス可能になったら、ここに具体的な URL の例を追加する
-
-Treated 状態で使っている S3 バケットの `/split_by_id` 以下がそのまま CloudFront 経由でアクセスできるようになっています。そのため、Treated 状態はほんの数秒間しか使われないでしょう。
-
-将来的に他の CDN を使用するようになった場合や、各ロケーションのエッジへ配信する必要が出てきた場合に、この Deployed になるまで時間がかかるようになるかもしれません。
+Playlog は終了後もドキュメントデータベースに永続化されるため、たとえば FerretDB(PostgreSQL) のディスク圧迫を招くことがあります。
+不要な Playlog は削除する、別のフォーマットでアーカイブしつつ FerretDB からは消す、などの対処はシステム運用者の責務で行ってください。

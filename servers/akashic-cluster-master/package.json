@@ -56,7 +56,7 @@
     "@types/lodash.difference": "4.5.9",
     "@types/lodash.uniqwith": "4.5.9",
     "@types/mysql": "2.15.27",
-    "@types/node": "22.19.7",
+    "@types/node": "22.19.15",
     "@types/node-zookeeper-client": "0.2.14",
     "@types/q": "1.5.8",
     "@types/superagent": "4.1.24",

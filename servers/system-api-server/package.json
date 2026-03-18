@@ -68,7 +68,7 @@
     "@types/mongodb": "4.0.7",
     "@types/msgpack-lite": "0.1.12",
     "@types/mysql": "2.15.27",
-    "@types/node": "22.19.7",
+    "@types/node": "22.19.15",
     "@types/semaphore": "1.1.4",
     "@types/supertest": "2.0.16",
     "jasmine-reporters": "2.5.2",

@@ -41,7 +41,7 @@
     "@akashic-system/tsc-config": "^2.0.31",
     "@akashic-system/tslint-config": "^2.0.30",
     "@types/jest": "29.5.14",
-    "@types/node": "22.19.7",
+    "@types/node": "22.19.15",
     "@types/uuid": "10.0.0",
     "@types/uws": "0.13.7",
     "@types/ws": "8.18.1",

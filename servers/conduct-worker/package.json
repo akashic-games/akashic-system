@@ -55,7 +55,7 @@
     "amqplib": "0.10.9",
     "config": "3.3.12",
     "log4js": "6.9.1",
-    "lru-cache": "11.2.6"
+    "lru-cache": "11.2.7"
   },
   "jest": {
     "preset": "@akashic-system/jest-config",

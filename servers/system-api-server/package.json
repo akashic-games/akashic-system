@@ -43,7 +43,7 @@
     "@akashic/rest-client-core": "^5.0.4",
     "@akashic/server-engine-data-types": "^6.0.100",
     "@akashic/tapper": "^1.0.95",
-    "@slack/webhook": "7.0.7",
+    "@slack/webhook": "7.0.8",
     "amqplib": "0.10.9",
     "config": "3.3.12",
     "express": "4.22.1",

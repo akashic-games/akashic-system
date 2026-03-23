@@ -39,7 +39,7 @@
     "@types/config": "3.3.5",
     "@types/express": "4.17.25",
     "@types/jest": "29.5.14",
-    "@types/node": "22.19.7",
+    "@types/node": "22.19.15",
     "@types/semaphore": "1.1.4",
     "jest": "29.7.0",
     "npm-run-all2": "6.2.6",

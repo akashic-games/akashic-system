@@ -38,7 +38,7 @@
     "@akashic-system/tslint-config": "^2.0.30",
     "@akashic/playlog-client": "7.3.1",
     "@types/jest": "29.5.14",
-    "@types/node": "22.19.7",
+    "@types/node": "22.19.15",
     "@types/node-uuid": "0.0.32",
     "@types/ws": "8.18.1",
     "jest": "29.7.0",

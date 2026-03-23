@@ -70,7 +70,7 @@
     "@types/log4js": "2.3.5",
     "@types/mongodb": "4.0.7",
     "@types/mysql": "2.15.27",
-    "@types/node": "22.19.7",
+    "@types/node": "22.19.15",
     "@types/node-uuid": "0.0.32",
     "@types/rx-lite": "4.0.10",
     "@types/superagent": "4.1.24",

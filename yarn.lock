@@ -997,7 +997,7 @@ __metadata:
     "@akashic/rest-client-core": "npm:^5.0.4"
     "@akashic/server-engine-data-types": "npm:^6.0.100"
     "@akashic/tapper": "npm:^1.0.95"
-    "@slack/webhook": "npm:7.0.7"
+    "@slack/webhook": "npm:7.0.8"
     "@types/amqplib": "npm:0.10.8"
     "@types/config": "npm:3.3.5"
     "@types/express": "npm:4.17.25"
@@ -3649,10 +3649,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slack/types@npm:^2.9.0":
-  version: 2.13.0
-  resolution: "@slack/types@npm:2.13.0"
-  checksum: 10c0/ba1a39e8efab299213644d110dd83b9046b8ee737f49f874772269b342b8e06b2d15c3ce19622557941c8d1cb10d7899827dbfcad58aae3f542350371b459dbd
+"@slack/types@npm:^2.20.1":
+  version: 2.20.1
+  resolution: "@slack/types@npm:2.20.1"
+  checksum: 10c0/62f1ff4d387cf511316f45c18ce9beaa1d0989a063ede5b40458fa776d460417f49faafb6cf7312fe2a9a5c8dfeb5c39ab685b911332f117a8222708da6468d7
   languageName: node
   linkType: hard
 
@@ -3667,14 +3667,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slack/webhook@npm:7.0.7":
-  version: 7.0.7
-  resolution: "@slack/webhook@npm:7.0.7"
+"@slack/webhook@npm:7.0.8":
+  version: 7.0.8
+  resolution: "@slack/webhook@npm:7.0.8"
   dependencies:
-    "@slack/types": "npm:^2.9.0"
-    "@types/node": "npm:>=18.0.0"
+    "@slack/types": "npm:^2.20.1"
+    "@types/node": "npm:>=18"
     axios: "npm:^1.13.5"
-  checksum: 10c0/df355ffbc4f99c00a18d6bca8269be9fa70e39d43b51768c94194fc7475ea13c79e9b7ad6b3ffb2acd2873e67690c662eda724b12bfd2fe51b34215811d762b3
+  checksum: 10c0/ae759de7ea730ae44505484f50229cdc0b3f89bfd99e09d0b160bd7552add1f86693eae74b05111592eebb15ffb427f73e2dd3d83b1677ddb5bebc73fe30f814
   languageName: node
   linkType: hard
 
@@ -4833,12 +4833,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:>=18.0.0":
-  version: 22.5.4
-  resolution: "@types/node@npm:22.5.4"
+"@types/node@npm:>=18":
+  version: 25.5.0
+  resolution: "@types/node@npm:25.5.0"
   dependencies:
-    undici-types: "npm:~6.19.2"
-  checksum: 10c0/b445daa7eecd761ad4d778b882d6ff7bcc3b4baad2086ea9804db7c5d4a4ab0298b00d7f5315fc640a73b5a1d52bbf9628e09c9fec0cf44dbf9b4df674a8717d
+    undici-types: "npm:~7.18.0"
+  checksum: 10c0/70c508165b6758c4f88d4f91abca526c3985eee1985503d4c2bd994dbaf588e52ac57e571160f18f117d76e963570ac82bd20e743c18987e82564312b3b62119
   languageName: node
   linkType: hard
 
@@ -15103,17 +15103,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~6.19.2":
-  version: 6.19.8
-  resolution: "undici-types@npm:6.19.8"
-  checksum: 10c0/078afa5990fba110f6824823ace86073b4638f1d5112ee26e790155f481f2a868cc3e0615505b6f4282bdf74a3d8caad715fd809e870c2bb0704e3ea6082f344
-  languageName: node
-  linkType: hard
-
 "undici-types@npm:~6.21.0":
   version: 6.21.0
   resolution: "undici-types@npm:6.21.0"
   checksum: 10c0/c01ed51829b10aa72fc3ce64b747f8e74ae9b60eafa19a7b46ef624403508a54c526ffab06a14a26b3120d055e1104d7abe7c9017e83ced038ea5cf52f8d5e04
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~7.18.0":
+  version: 7.18.2
+  resolution: "undici-types@npm:7.18.2"
+  checksum: 10c0/85a79189113a238959d7a647368e4f7c5559c3a404ebdb8fc4488145ce9426fcd82252a844a302798dfc0e37e6fb178ff481ed03bc4caf634c5757d9ef43521d
   languageName: node
   linkType: hard
 

@@ -4,6 +4,41 @@
 
 # akashic-system
 
+## For Shinonomekazan
+
+### Public ports
+- `2100`: Nginx
+- `3100`: System API server
+- `4001 - 4008`: Playlog server
+- `17000`: Cluster Monitor
+
+### ZooKeeper
+autoPurge など設定
+
+### MongoDB
+- FerretDB -> MongoDB 6.*
+- TTL 32 * 86400 に playlogs を追加
+
+```sh
+db.playlogs.createIndex(
+   { "playId": 1 },
+   { expireAfterSeconds: 2764800 }
+)
+```
+### System API Server
+bind 0.0.0.0:3001:3001
+
+### Cluster Monitor
+bind 0.0.0.0:17000:1700
+
+### Playlog Server
+Used Public Domain
+
+### Game Runner
+Used shinonomekazan confiuration
+
+## Originals
+
 Akashic のサーバーサイドとなる、Akashic System のメインリポジトリです。Akashic System の詳細な利用方法については、[公式サイトのドキュメント](https://akashic-games.github.io/akashic-system/) を参照してください。
 
 ## `packages/` と `servers/` ディレクトリ

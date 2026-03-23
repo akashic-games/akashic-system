@@ -71,6 +71,10 @@ services:
       - "./config/resource-server/nginx.conf:/etc/nginx/conf.d/default.conf:ro"
 
   # akashic system
+  #----------------------------------------------------------------------------
+  # Akashic Cluster Master
+  # Private
+  #----------------------------------------------------------------------------
   akashic-cluster-master:
     image: ghcr.io/akashic-games/akashic-system:latest
     working_dir: /home/akashic/app/servers/akashic-cluster-master
@@ -90,12 +94,16 @@ services:
       temp-db-setup:
         condition: service_completed_successfully
 
+  #----------------------------------------------------------------------------
+  # Akashic Cluster Monitor
+  # Public: 17000 port
+  #----------------------------------------------------------------------------
   cluster-monitor:
     image: ghcr.io/akashic-games/akashic-system:latest
     working_dir: /home/akashic/app/servers/cluster-monitor
     restart: always
     ports:
-      - "127.0.0.1:17000:17000"
+      - "17000:17000"
     environment:
       NODE_ENV: ""
       LANG: ja_JP.UTF8
@@ -111,6 +119,10 @@ services:
       temp-db-setup:
         condition: service_completed_successfully
 
+  #----------------------------------------------------------------------------
+  # Akashic Cluster Monitor
+  # Private
+  #----------------------------------------------------------------------------
   cluster-monitor-api-server:
     image: ghcr.io/akashic-games/akashic-system:latest
     working_dir: /home/akashic/app/servers/cluster-monitor-api-server
@@ -128,6 +140,10 @@ services:
       temp-db-setup:
         condition: service_completed_successfully
 
+  #----------------------------------------------------------------------------
+  # Conduct Worker
+  # Private
+  #----------------------------------------------------------------------------
   conduct-worker:
     image: ghcr.io/akashic-games/akashic-system:latest
     working_dir: /home/akashic/app/servers/conduct-worker
@@ -143,7 +159,11 @@ services:
       temp-db-setup:
         condition: service_completed_successfully
 
-  playlog-server:
+  #----------------------------------------------------------------------------
+  # Playlog server 01
+  # Public: 4001 port
+  #----------------------------------------------------------------------------
+   playlog-server01:
     image: ghcr.io/akashic-games/akashic-system:latest
     working_dir: /home/akashic/app/servers/playlog-server
     restart: always
@@ -151,10 +171,33 @@ services:
       - "4001:4001"
       - "127.0.0.1:4301:4301"
     environment:
-      NODE_ENV: ""
+      NODE_ENV: "production"
       LANG: ja_JP.UTF8
     volumes:
-      - "./logs/playlog-server:/var/log/akashic"
+      - /var/log/akashic:/home/akashic/log
+    entrypoint: node
+    command:
+      - --heapsnapshot-signal=SIGUSR2
+      - /home/akashic/app/servers/playlog-server/bin/www
+      - -p
+      - "4001"
+      - -d
+      - -m
+      - "500"
+      - -i
+      - "akashic-system_playlog-server-01"
+      - -t
+      - standard_websocket
+      - -e
+      - wss://msg01.shinonomekazan.akashic.coe.nicovideo.jp/4001/
+      - -s
+      - "http://playlog-server01:4301"
+      - -c
+      - "dispatching_playlog-server_4001"
+      - -r
+      - "60000"
+      - --reservationPort
+      - "4301"
     depends_on:
       minio:
         condition: service_healthy
@@ -168,35 +211,21 @@ services:
         condition: service_started
       temp-db-setup:
         condition: service_completed_successfully
-    command:
-      - start
-      - "--"
-      - "-d"
-      - "-p"
-      - "4001"
-      - "--reservationPort"
-      - "4301"
-      - "-m"
-      - "50"
-      - "-i"
-      - "akashic-system_playlog-server-01"
-      - "-t"
-      - "standard_websocket"
-      - "-e"
-      - "ws://playlog-server:4001"
-      - "-s"
-      - "http://playlog-server:4301"
-      - "-c"
-      - "dispatching_playlog-server_4001"
-      - "-r"
-      - "60000"
-
+    ulimits:
+      core:
+        hard: 0
+        soft: 0
+  
+  #----------------------------------------------------------------------------
+  # System API Server
+  # Public: 3100 port
+  #----------------------------------------------------------------------------
   system-api-server:
     image: ghcr.io/akashic-games/akashic-system:latest
     working_dir: /home/akashic/app/servers/system-api-server
     restart: always
     ports:
-      - "127.0.0.1:3100:3100"
+      - "3100:3100"
     environment:
       NODE_ENV: ""
       LANG: ja_JP.UTF8
@@ -215,7 +244,10 @@ services:
       temp-redis-setup:
         condition: service_completed_successfully
 
-  # game-runner2
+  #----------------------------------------------------------------------------
+  # Game Runner 01
+  # Private
+  #----------------------------------------------------------------------------
   game-runner:
     image: ghcr.io/akashic-games/game-runner:latest
     platform: linux/amd64
@@ -308,36 +340,19 @@ services:
       timeout: 5s
       retries: 10
 
-  ferretdb-postgres:
-    image: ghcr.io/ferretdb/postgres-documentdb:17-0.107.0-ferretdb-2.7.0
-    restart: always
-    environment:
-      - POSTGRES_USER=username
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=postgres
-    volumes:
-      - ferretdb-postgres-volume:/var/lib/postgresql/data
-    # コンテナの起動チェック
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
-
   mongodb:
-    image: ghcr.io/ferretdb/ferretdb:2.7.0
+    image: mongo:6.0.27
     restart: always
     ports:
       - "127.0.0.1:27017:27017"
-    environment:
-      - FERRETDB_AUTH=false
-      - FERRETDB_POSTGRESQL_URL=postgres://username:password@ferretdb-postgres:5432/postgres
-      - FERRETDB_LOG_LEVEL=warn
-    depends_on:
-      ferretdb-postgres:
-        condition: service_healthy
+    volumes:
+      - mongodb-volume/db:/data/db
+      - mongodb-volume/configdb:/data/configdb
+    ulimits:
+      nofile: 64000
+      nproc: 64000
     healthcheck:
-      test: ["CMD", "/ferretdb", "ping"]
+      test: echo 'db.runCommand("ping").ok' | mongosh mongodb://localhost:27017/ --quiet
       interval: 5s
       timeout: 5s
       retries: 10
@@ -349,6 +364,9 @@ services:
       - "127.0.0.1:2181:2181"
     environment:
       ZOO_4LW_COMMANDS_WHITELIST: ruok
+      ZOO_MAX_CLIENT_CNXNS: 0
+      ZOO_AUTOPURGE_PURGEINTERVAL: 1
+      ZOO_AUTOPURGE_SNAPRETAINCOUNT: 100
     healthcheck:
       test: ["CMD-SHELL", "echo ruok | nc 127.0.0.1 2181 | grep imok"]
       interval: 5s
@@ -378,7 +396,7 @@ services:
       retries: 10
 
 volumes:
-  ferretdb-postgres-volume:
+  mongodb-volume:
   database-volume:
   redis-content-storage-node-0-volume:
   redis-content-storage-node-1-volume:

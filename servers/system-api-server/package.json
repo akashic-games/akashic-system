@@ -37,7 +37,7 @@
     "@akashic/dispatcher": "5.4.0",
     "@akashic/dispatching-core": "^1.0.101",
     "@akashic/instance-requester": "^1.1.2",
-    "@akashic/playlog": "3.1.0",
+    "@akashic/playlog": "3.4.1",
     "@akashic/playlog-amqp": "^3.2.0",
     "@akashic/playtoken-amqp": "^3.1.88",
     "@akashic/rest-client-core": "^5.0.4",

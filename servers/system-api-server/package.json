@@ -47,7 +47,7 @@
     "amqplib": "0.10.9",
     "config": "3.3.12",
     "express": "4.22.1",
-    "ioredis": "5.9.3",
+    "ioredis": "5.10.0",
     "lodash.uniq": "4.5.0",
     "log4js": "6.9.1",
     "moment": "2.30.1",

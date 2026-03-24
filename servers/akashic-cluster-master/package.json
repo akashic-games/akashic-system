@@ -36,7 +36,7 @@
     "@akashic/tapper": "^1.0.95",
     "config": "3.3.12",
     "express": "4.22.1",
-    "ioredis": "5.9.3",
+    "ioredis": "5.10.0",
     "js-yaml": "4.1.1",
     "lodash.difference": "4.5.0",
     "lodash.uniqwith": "4.5.0",

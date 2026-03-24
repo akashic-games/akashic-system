@@ -25,7 +25,7 @@
   "author": "DWANGO Co., Ltd.",
   "license": "MIT",
   "dependencies": {
-    "@akashic/amflow": "3.0.0",
+    "@akashic/amflow": "3.3.0",
     "@akashic/amflow-message": "^4.2.0",
     "@akashic/amtplib": "1.0.95",
     "@akashic/log-util": "^3.0.96",

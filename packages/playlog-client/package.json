@@ -30,7 +30,7 @@
     "directory": "packages/playlog-client"
   },
   "dependencies": {
-    "@akashic/amflow": "3.0.0",
+    "@akashic/amflow": "3.3.0",
     "@akashic/amflow-message": "^4.2.0",
     "@akashic/amtplib": "1.0.95",
     "es6-promise": "4.2.8",

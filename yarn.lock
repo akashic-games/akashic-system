@@ -210,7 +210,7 @@ __metadata:
     "@akashic-system/logger": "npm:^0.1.8"
     "@akashic-system/tsc-config": "npm:^2.0.31"
     "@akashic-system/tslint-config": "npm:^2.0.30"
-    "@akashic/amflow": "npm:3.0.0"
+    "@akashic/amflow": "npm:3.3.0"
     "@akashic/amflow-message": "npm:^4.2.0"
     "@akashic/amqp-utils": "npm:^2.1.22"
     "@akashic/playlog": "npm:3.4.1"
@@ -274,7 +274,7 @@ __metadata:
     "@akashic-system/jest-config": "npm:^2.0.53"
     "@akashic-system/tsc-config": "npm:^2.0.31"
     "@akashic-system/tslint-config": "npm:^2.0.30"
-    "@akashic/amflow": "npm:3.0.0"
+    "@akashic/amflow": "npm:3.3.0"
     "@akashic/playlog": "npm:3.4.1"
     "@types/jest": "npm:29.5.14"
     "@types/msgpack-lite": "npm:0.1.12"
@@ -290,12 +290,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akashic/amflow@npm:3.0.0":
-  version: 3.0.0
-  resolution: "@akashic/amflow@npm:3.0.0"
+"@akashic/amflow@npm:3.3.0":
+  version: 3.3.0
+  resolution: "@akashic/amflow@npm:3.3.0"
   dependencies:
-    "@akashic/playlog": "npm:~3.1.0"
-  checksum: 10c0/c2505b6421ea4b3118a645d0be00a0fa6990fe2e95d160a97c905e076a382e5843ec9d21565c802094f43d6de110d49d5cbee4e8b440b503ad7e642df5a00d85
+    "@akashic/playlog": "npm:~3.3.0"
+  checksum: 10c0/28fa2e4f706c3c6a085b43656b920c4b6dca32111858ece21e334687702cb0e221b9d18634accc9dc033a55d5da71d32d5400559ab1adb5e588f0632337338bc
   languageName: node
   linkType: hard
 
@@ -698,7 +698,7 @@ __metadata:
     "@akashic-system/jest-config": "npm:^2.0.53"
     "@akashic-system/tsc-config": "npm:^2.0.31"
     "@akashic-system/tslint-config": "npm:^2.0.30"
-    "@akashic/amflow": "npm:3.0.0"
+    "@akashic/amflow": "npm:3.3.0"
     "@akashic/amflow-message": "npm:^4.2.0"
     "@akashic/playlog": "npm:3.4.1"
     "@types/amqplib": "npm:0.10.8"
@@ -723,7 +723,7 @@ __metadata:
     "@akashic-system/jest-config": "npm:^2.0.53"
     "@akashic-system/tsc-config": "npm:^2.0.31"
     "@akashic-system/tslint-config": "npm:^2.0.30"
-    "@akashic/amflow": "npm:3.0.0"
+    "@akashic/amflow": "npm:3.3.0"
     "@akashic/amflow-message": "npm:^4.2.0"
     "@akashic/amtplib": "npm:1.0.95"
     "@types/jest": "npm:29.5.14"
@@ -750,7 +750,7 @@ __metadata:
     "@akashic-system/jest-config": "npm:^2.0.53"
     "@akashic-system/tsc-config": "npm:^2.0.31"
     "@akashic-system/tslint-config": "npm:^2.0.30"
-    "@akashic/amflow": "npm:3.0.0"
+    "@akashic/amflow": "npm:3.3.0"
     "@akashic/amflow-message": "npm:^4.2.0"
     "@akashic/amtplib": "npm:1.0.95"
     "@akashic/log-util": "npm:^3.0.96"
@@ -783,7 +783,7 @@ __metadata:
     "@akashic/akashic-rest-commons": "npm:^4.0.9"
     "@akashic/akashic-system": "npm:^11.4.0"
     "@akashic/alive-monitoring-core": "npm:^2.3.0"
-    "@akashic/amflow": "npm:3.0.0"
+    "@akashic/amflow": "npm:3.3.0"
     "@akashic/amflow-message": "npm:^4.2.0"
     "@akashic/amtplib": "npm:1.0.95"
     "@akashic/cast-util": "npm:^1.0.97"
@@ -875,10 +875,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@akashic/playlog@npm:~3.1.0":
-  version: 3.1.0
-  resolution: "@akashic/playlog@npm:3.1.0"
-  checksum: 10c0/d34fee53573b049ecb8988acad51bfc25e16678b2820d870a54bab4527bd86d038573cd81eccb3a30f55cb11f7eb4e5a153c580ee3902d2852b13c98b1b1a0e8
+"@akashic/playlog@npm:~3.3.0":
+  version: 3.3.0
+  resolution: "@akashic/playlog@npm:3.3.0"
+  checksum: 10c0/2c044e41b3b725a0aa8096829a19f79f4e3a519368771cedd94510935da132fc7d18715ddcadfb4bb53721852603669d42037dd0951011e960449a243d3b786e
   languageName: node
   linkType: hard
 
@@ -990,7 +990,7 @@ __metadata:
     "@akashic/akashic-storage-core": "npm:^1.2.0"
     "@akashic/akashic-system": "npm:^11.4.0"
     "@akashic/alive-monitoring-core": "npm:^2.3.0"
-    "@akashic/amflow": "npm:3.0.0"
+    "@akashic/amflow": "npm:3.3.0"
     "@akashic/amflow-message": "npm:^4.2.0"
     "@akashic/amqp-utils": "npm:^2.1.22"
     "@akashic/cast-util": "npm:^1.0.97"

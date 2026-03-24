@@ -26,7 +26,7 @@
   ],
   "dependencies": {
     "@akashic-system/logger": "^0.1.8",
-    "@akashic/amflow": "3.0.0",
+    "@akashic/amflow": "3.3.0",
     "@akashic/amflow-message": "^4.2.0",
     "@akashic/amqp-utils": "^2.1.22",
     "@akashic/playlog": "3.4.1",

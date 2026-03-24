@@ -1,4 +1,4 @@
-FROM node:24.13.0 AS build
+FROM node:24.13.1 AS build
 
 LABEL description="Akashic System"
 
@@ -14,7 +14,7 @@ RUN yarn build
 #なので、本番環境でも、NODE_ENV=development で `npm ci` した node_modules を使う。
 
 # 最終的に push されるイメージ ここから最後まで。
-FROM node:24.13.0-alpine
+FROM node:24.14.0-alpine
 ENV APP_HOME /home/akashic/app
 ENV NODE_ENV production
 #

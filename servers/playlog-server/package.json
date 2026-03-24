@@ -34,7 +34,7 @@
     "@akashic/cast-util": "^1.0.97",
     "@akashic/dispatching-core": "^1.0.101",
     "@akashic/log-util": "^3.0.96",
-    "@akashic/playlog": "3.1.0",
+    "@akashic/playlog": "3.4.1",
     "@akashic/playlog-amqp": "^3.2.0",
     "@akashic/playlog-server-engine": "^2.5.0",
     "@akashic/playtoken-amqp": "^3.1.88",

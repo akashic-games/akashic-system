@@ -213,7 +213,7 @@ __metadata:
     "@akashic/amflow": "npm:3.0.0"
     "@akashic/amflow-message": "npm:^4.2.0"
     "@akashic/amqp-utils": "npm:^2.1.22"
-    "@akashic/playlog": "npm:3.1.0"
+    "@akashic/playlog": "npm:3.4.1"
     "@akashic/redis-client": "npm:1.2.0"
     "@akashic/server-engine-data-types": "npm:^6.0.100"
     "@aws-sdk/client-s3": "npm:3.991.0"
@@ -275,7 +275,7 @@ __metadata:
     "@akashic-system/tsc-config": "npm:^2.0.31"
     "@akashic-system/tslint-config": "npm:^2.0.30"
     "@akashic/amflow": "npm:3.0.0"
-    "@akashic/playlog": "npm:3.1.0"
+    "@akashic/playlog": "npm:3.4.1"
     "@types/jest": "npm:29.5.14"
     "@types/msgpack-lite": "npm:0.1.12"
     "@types/node": "npm:22.19.15"
@@ -700,7 +700,7 @@ __metadata:
     "@akashic-system/tslint-config": "npm:^2.0.30"
     "@akashic/amflow": "npm:3.0.0"
     "@akashic/amflow-message": "npm:^4.2.0"
-    "@akashic/playlog": "npm:3.1.0"
+    "@akashic/playlog": "npm:3.4.1"
     "@types/amqplib": "npm:0.10.8"
     "@types/bluebird": "npm:3.5.42"
     "@types/jest": "npm:29.5.14"
@@ -789,7 +789,7 @@ __metadata:
     "@akashic/cast-util": "npm:^1.0.97"
     "@akashic/dispatching-core": "npm:^1.0.101"
     "@akashic/log-util": "npm:^3.0.96"
-    "@akashic/playlog": "npm:3.1.0"
+    "@akashic/playlog": "npm:3.4.1"
     "@akashic/playlog-amqp": "npm:^3.2.0"
     "@akashic/playlog-client": "npm:7.3.1"
     "@akashic/playlog-server-engine": "npm:^2.5.0"
@@ -868,7 +868,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akashic/playlog@npm:3.1.0, @akashic/playlog@npm:~3.1.0":
+"@akashic/playlog@npm:3.4.1":
+  version: 3.4.1
+  resolution: "@akashic/playlog@npm:3.4.1"
+  checksum: 10c0/932c033cacf99b093e2a03f27a150c27daf095156e6f312d797ce3ebcaff77f336f05eabe2a30b9a6b5699029dab1b2621131d07dc6df8a26e71b43baa5cd222
+  languageName: node
+  linkType: hard
+
+"@akashic/playlog@npm:~3.1.0":
   version: 3.1.0
   resolution: "@akashic/playlog@npm:3.1.0"
   checksum: 10c0/d34fee53573b049ecb8988acad51bfc25e16678b2820d870a54bab4527bd86d038573cd81eccb3a30f55cb11f7eb4e5a153c580ee3902d2852b13c98b1b1a0e8
@@ -991,7 +998,7 @@ __metadata:
     "@akashic/dispatcher": "npm:5.4.0"
     "@akashic/dispatching-core": "npm:^1.0.101"
     "@akashic/instance-requester": "npm:^1.1.2"
-    "@akashic/playlog": "npm:3.1.0"
+    "@akashic/playlog": "npm:3.4.1"
     "@akashic/playlog-amqp": "npm:^3.2.0"
     "@akashic/playtoken-amqp": "npm:^3.1.88"
     "@akashic/rest-client-core": "npm:^5.0.4"

@@ -29,7 +29,7 @@
     "@akashic/amflow": "3.0.0",
     "@akashic/amflow-message": "^4.2.0",
     "@akashic/amqp-utils": "^2.1.22",
-    "@akashic/playlog": "3.1.0",
+    "@akashic/playlog": "3.4.1",
     "@akashic/redis-client": "1.2.0",
     "@akashic/server-engine-data-types": "^6.0.100",
     "@aws-sdk/client-s3": "3.991.0",

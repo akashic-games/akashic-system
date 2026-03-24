@@ -28,7 +28,7 @@
     "@akashic/akashic-rest-commons": "^4.0.9",
     "@akashic/akashic-system": "^11.4.0",
     "@akashic/alive-monitoring-core": "^2.3.0",
-    "@akashic/amflow": "3.0.0",
+    "@akashic/amflow": "3.3.0",
     "@akashic/amflow-message": "^4.2.0",
     "@akashic/amtplib": "1.0.95",
     "@akashic/cast-util": "^1.0.97",

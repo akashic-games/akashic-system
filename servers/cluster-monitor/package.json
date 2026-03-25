@@ -42,7 +42,7 @@
     "glob": "11.1.0",
     "ioredis": "5.10.0",
     "log4js": "6.9.1",
-    "moment-timezone": "0.6.0"
+    "moment-timezone": "0.6.1"
   },
   "devDependencies": {
     "@akashic-system/jest-config": "^2.0.53",

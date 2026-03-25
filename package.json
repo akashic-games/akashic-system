@@ -37,7 +37,7 @@
   "author": "DWANGO Co., Ltd.",
   "license": "MIT",
   "dependencies": {
-    "mysql2": "3.16.3",
+    "mysql2": "3.20.0",
     "sequelize": "6.37.8"
   },
   "devDependencies": {

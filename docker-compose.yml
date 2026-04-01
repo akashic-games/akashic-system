@@ -132,7 +132,7 @@ services:
   # middle wares
   database:
     container_name: database
-    image: mysql:8.0.39
+    image: mysql:9.6.0
     restart: always
     ports:
       - "3306:3306"

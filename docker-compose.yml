@@ -144,7 +144,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password
   redis:
     container_name: redis
-    image: redis:7.4.8
+    image: redis:8.6.2
     restart: always
     ports:
       - "6379:6379"

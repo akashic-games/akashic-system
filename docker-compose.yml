@@ -150,7 +150,7 @@ services:
       - "6379:6379"
   rabbitmq:
     container_name: rabbitmq
-    image: rabbitmq:3.13.7-management
+    image: rabbitmq:4.2.5-management
     restart: always
     ports:
       - "5671:5671"

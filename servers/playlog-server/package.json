@@ -41,7 +41,7 @@
     "@akashic/rest-client-core": "^5.0.4",
     "@akashic/server-engine-data-types": "^6.0.100",
     "@akashic/system-control-api-client": "^6.0.4",
-    "@aws-sdk/client-s3": "3.991.0",
+    "@aws-sdk/client-s3": "3.1017.0",
     "amqplib": "0.10.9",
     "commander": "12.1.0",
     "config": "3.3.12",

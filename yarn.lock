@@ -907,7 +907,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@akashic/redis-client@workspace:packages/redis-client"
   dependencies:
-    ioredis: "npm:~3.2.2"
+    ioredis: "npm:3.2.2"
   languageName: unknown
   linkType: soft
 
@@ -9132,24 +9132,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ioredis@npm:5.10.1":
-  version: 5.10.1
-  resolution: "ioredis@npm:5.10.1"
-  dependencies:
-    "@ioredis/commands": "npm:1.5.1"
-    cluster-key-slot: "npm:^1.1.0"
-    debug: "npm:^4.3.4"
-    denque: "npm:^2.1.0"
-    lodash.defaults: "npm:^4.2.0"
-    lodash.isarguments: "npm:^3.1.0"
-    redis-errors: "npm:^1.2.0"
-    redis-parser: "npm:^3.0.0"
-    standard-as-callback: "npm:^2.1.0"
-  checksum: 10c0/d0507b52520d3bdd5dacaa33aed9dd3133794d8633b43a6b7fc3199a5e73f92cb77409f6904abe68e3221a95a630d97073b8c1c9e2c0c7613124db67e97c0eb0
-  languageName: node
-  linkType: hard
-
-"ioredis@npm:~3.2.2":
+"ioredis@npm:3.2.2":
   version: 3.2.2
   resolution: "ioredis@npm:3.2.2"
   dependencies:
@@ -9177,6 +9160,23 @@ __metadata:
     redis-commands: "npm:^1.2.0"
     redis-parser: "npm:^2.4.0"
   checksum: 10c0/68c18e93820467c2b4e4bcc739f18b96b2cdb407d604368dafa581ff9127d4de47e5fb76938c0bdc909f52cbd62638c5bd245914d8a25f5d8152b95fe1c8e10d
+  languageName: node
+  linkType: hard
+
+"ioredis@npm:5.10.1":
+  version: 5.10.1
+  resolution: "ioredis@npm:5.10.1"
+  dependencies:
+    "@ioredis/commands": "npm:1.5.1"
+    cluster-key-slot: "npm:^1.1.0"
+    debug: "npm:^4.3.4"
+    denque: "npm:^2.1.0"
+    lodash.defaults: "npm:^4.2.0"
+    lodash.isarguments: "npm:^3.1.0"
+    redis-errors: "npm:^1.2.0"
+    redis-parser: "npm:^3.0.0"
+    standard-as-callback: "npm:^2.1.0"
+  checksum: 10c0/d0507b52520d3bdd5dacaa33aed9dd3133794d8633b43a6b7fc3199a5e73f92cb77409f6904abe68e3221a95a630d97073b8c1c9e2c0c7613124db67e97c0eb0
   languageName: node
   linkType: hard
 

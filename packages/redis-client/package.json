@@ -10,7 +10,7 @@
   "author": "DWANGO Co., Ltd.",
   "license": "MIT",
   "dependencies": {
-    "ioredis": "~3.2.2"
+    "ioredis": "3.2.2"
   },
   "publishConfig": {
     "@akashic:registry": "https://registry.npmjs.org/"
